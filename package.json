@@ -25,8 +25,5 @@
     "typescript": "^5.0.0",
     "vite": "^7.0.4"
   },
-  "dependencies": {
-    "carbon-components-svelte": "^0.89.6",
-    "carbon-icons-svelte": "^13.5.0"
-  }
+  "dependencies": {}
 }
