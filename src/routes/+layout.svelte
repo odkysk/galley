@@ -1,8 +1,8 @@
 <script lang="ts">
-  import favicon from "$lib/assets/favicon.svg";
-  import Sidebar from "$lib/components/Sidebar.svelte";
-  import "../app.css";
+  import AppSidebar from "$lib/components/AppSidebar.svelte";
+  import * as Sidebar from "$lib/components/ui/sidebar/index";
 
+  import "../app.css";
   let { children } = $props();
   let sidebarOpen = $state(true);
 
@@ -15,16 +15,10 @@
   }
 </script>
 
-<svelte:head>
-  <link rel="icon" href={favicon} />
-</svelte:head>
-
-<div class="flex h-screen bg-gray-50">
-  <Sidebar />
-
-  <div class="flex-1 flex flex-col overflow-hidden">
-    <main class="flex-1 overflow-auto">
-      {@render children?.()}
-    </main>
+<Sidebar.Provider>
+  <AppSidebar />
+  <div class="p-2"><Sidebar.Trigger /></div>
+  <div class="flex-1">
+    {@render children?.()}
   </div>
-</div>
+</Sidebar.Provider>
