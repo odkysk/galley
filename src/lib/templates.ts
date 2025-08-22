@@ -6,26 +6,38 @@ export interface Template {
   component: Component;
 }
 
-// Dynamic template imports
-const templateModules = import.meta.glob('/src/templates/*.svelte', { eager: true });
+// Get template names from filesystem
+export function getTemplateNames(): string[] {
+  // For now, return known template names
+  // In a real app, you could use a build-time plugin to generate this
+  return ['Banner', 'Profile'];
+}
 
-export function getTemplates(): Template[] {
+export async function getTemplates(): Promise<Template[]> {
+  const templateNames = getTemplateNames();
   const templates: Template[] = [];
   
-  for (const [path, module] of Object.entries(templateModules)) {
-    const fileName = path.split('/').pop()?.replace('.svelte', '') || '';
-    
-    templates.push({
-      name: fileName,
-      title: fileName,
-      component: (module as any).default
-    });
+  for (const name of templateNames) {
+    const component = await getTemplate(name);
+    if (component) {
+      templates.push({
+        name,
+        title: name,
+        component
+      });
+    }
   }
   
   return templates;
 }
 
-export function getTemplate(name: string): Component | null {
-  const templates = getTemplates();
-  return templates.find(t => t.name === name)?.component || null;
+export async function getTemplate(name: string): Promise<Component | null> {
+  try {
+    // Use dynamic import with template literals
+    const module = await import(`../templates/${name}.svelte`);
+    return module.default;
+  } catch (error) {
+    console.error(`Failed to load template ${name}:`, error);
+    return null;
+  }
 }
