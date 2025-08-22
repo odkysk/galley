@@ -1,30 +1,22 @@
 <script lang="ts">
-  import Spinner from "$lib/components/common/Spinner.svelte";
   import type { Component } from "svelte";
 
   let { data } = $props();
-
-  async function getTemplate(name: string): Promise<Component | null> {
-    try {
-      const module = await import(`../../../templates/${name}.svelte`);
-      return module.default;
-    } catch (error) {
-      console.error(`Failed to load template ${name}:`, error);
-      return null;
-    }
-  }
+  let templateName = $derived(data.templateName);
 
   let importTemplate = async () => {
     try {
-      const templateName = data.templateName;
       if (!templateName) throw new Error("Template name is undefined");
 
-      const template = await getTemplate(templateName);
-      if (!template) throw new Error(`Template "${templateName}" not found`);
+      const modulePath = `../../../templates/${templateName}.svelte`;
+      const module = await import(modulePath);
+      const templateComponent = module.default;
 
-      return template as Component;
+      if (!templateComponent)
+        throw new Error(`Template "${templateName}" not found`);
+      return templateComponent as Component;
     } catch (error) {
-      console.error(`テンプレートのインポートに失敗しました: ${error}`);
+      console.error(`Failed to load template "${templateName}":`, error);
       throw error;
     }
   };
@@ -32,7 +24,7 @@
 
 <div class="flex flex-1 flex-col overflow-x-hidden">
   {#await importTemplate()}
-    <Spinner />
+    <p>Loading...</p>
   {:then TemplateComponent}
     <div class="overflow-x-auto flex max-w-full">
       <div class="flex min-h-dvh flex-1 flex-col gap-3 overflow-auto p-3">
@@ -52,6 +44,7 @@
   {:catch error}
     <div class="flex flex-1 items-center justify-center">
       <p class="text-gray-500">Template "{data.templateName}" not found</p>
+      <p>{error.message}</p>
     </div>
   {/await}
 </div>

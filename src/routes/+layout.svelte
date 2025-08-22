@@ -17,7 +17,6 @@
 
 <Sidebar.Provider>
   <AppSidebar />
-  <div class="p-2"><Sidebar.Trigger /></div>
   <div class="flex-1">
     {@render children?.()}
   </div>
