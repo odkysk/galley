@@ -22,24 +22,18 @@
   };
 </script>
 
-<div class="flex flex-1 flex-col overflow-x-hidden">
+<div class="flex-1 bg-gray-200">
   {#await importTemplate()}
     <p>Loading...</p>
   {:then TemplateComponent}
-    <div class="overflow-x-auto flex max-w-full">
-      <div class="flex min-h-dvh flex-1 flex-col gap-3 overflow-auto p-3">
-        <h1 class="text-3xl font-bold">{data.templateName}</h1>
-        <div class="border rounded-lg p-4 bg-white shadow">
-          {#key data.templateName}
-            <TemplateComponent
-              title="Sample Title"
-              description="Sample description"
-              name="John Doe"
-              email="john@example.com"
-            />
-          {/key}
-        </div>
-      </div>
+    <div class="flex min-h-dvh flex-1 flex-col gap-3 p-3">
+      <h1 class="text-xl font-semibold">{data.templateName}</h1>
+      <TemplateComponent
+        title="Sample Title"
+        description="Sample description"
+        name="John Doe"
+        email="john@example.com"
+      />
     </div>
   {:catch error}
     <div class="flex flex-1 items-center justify-center">
