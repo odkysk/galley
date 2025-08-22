@@ -162,18 +162,6 @@ export const schema = z.object({
 - Add proper validation for user inputs
 - Follow accessibility best practices
 
-## 🗺 Roadmap
-
-- [x] Basic banner template system
-- [x] Image export functionality (PNG)
-- [ ] Banner template editor
-- [ ] User input forms
-- [ ] Template gallery
-- [ ] Real-time preview
-- [ ] Template sharing
-- [ ] Custom font support
-- [ ] Advanced styling options
-- [ ] Multiple export formats (SVG, JPG)
 
 ## 🤝 Contributing
 
