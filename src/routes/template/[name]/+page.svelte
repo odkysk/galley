@@ -1,18 +1,27 @@
 <script lang="ts">
-  import { getTemplate } from "$lib/templates.js";
-  import type { Component } from "svelte";
   import Spinner from "$lib/components/common/Spinner.svelte";
+  import type { Component } from "svelte";
 
   let { data } = $props();
+
+  async function getTemplate(name: string): Promise<Component | null> {
+    try {
+      const module = await import(`../../../templates/${name}.svelte`);
+      return module.default;
+    } catch (error) {
+      console.error(`Failed to load template ${name}:`, error);
+      return null;
+    }
+  }
 
   let importTemplate = async () => {
     try {
       const templateName = data.templateName;
-      if (!templateName) throw new Error('Template name is undefined');
-      
+      if (!templateName) throw new Error("Template name is undefined");
+
       const template = await getTemplate(templateName);
       if (!template) throw new Error(`Template "${templateName}" not found`);
-      
+
       return template as Component;
     } catch (error) {
       console.error(`テンプレートのインポートに失敗しました: ${error}`);
