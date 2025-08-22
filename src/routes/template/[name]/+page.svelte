@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Input } from "$lib/components/ui/input";
-  import html2canvas from "html2canvas";
+  import html2canvas from "html2canvas-pro";
   import type { Component } from "svelte";
 
   let { data } = $props();
