@@ -4,15 +4,6 @@
 
   import "../app.css";
   let { children } = $props();
-  let sidebarOpen = $state(true);
-
-  function handleTemplateSelect(templateId: string) {
-    console.log("Selected template:", templateId);
-  }
-
-  function toggleSidebar() {
-    sidebarOpen = !sidebarOpen;
-  }
 </script>
 
 <Sidebar.Provider>

@@ -1,9 +1,15 @@
-<script lang="ts">
-  interface ProfileProps {
-    name: string;
-    email: string;
-  }
+<script module>
+  import { z } from "zod";
 
+  export const schema = z.object({
+    name: z.string().default("Default Name"),
+    email: z.string().email().default("user@example.com"),
+  });
+
+  export type ProfileProps = z.infer<typeof schema>;
+</script>
+
+<script lang="ts">
   let { name, email }: ProfileProps = $props();
 </script>
 
