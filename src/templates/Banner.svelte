@@ -13,7 +13,7 @@
   let { title, description }: BannerProps = $props();
 </script>
 
-<div class="bg-blue-500 text-white p-4">
+<div class="bg-[#FF0000] p-4 h-[100px] w-[300px]">
   <h1>{title}</h1>
   <p>{description}</p>
 </div>
