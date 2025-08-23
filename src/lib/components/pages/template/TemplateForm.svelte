@@ -23,6 +23,7 @@
         <Input id={key} bind:value={field.value} maxlength={field.maxLength} />
       {:else if field.type === "textarea"}
         <Textarea
+          class="resize-none"
           id={key}
           bind:value={field.value}
           rows={field.rows}
