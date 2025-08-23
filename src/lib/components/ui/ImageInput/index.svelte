@@ -3,6 +3,7 @@
   import * as Popover from "$lib/components/ui/popover/index.js";
   import type { ImageFrame } from "$lib/models/template.js";
   import Frame from "@lucide/svelte/icons/frame";
+  import RefreshCcw from "@lucide/svelte/icons/refresh-ccw";
   import Upload from "@lucide/svelte/icons/upload";
   import FrameControls from "./FrameControls.svelte";
 
@@ -27,6 +28,8 @@
 
   // Initialize frame with default values if not provided
   frame = frame || { zoom: 1, x: 0, y: 0 };
+
+  let blendMode = $state("normal");
 </script>
 
 <div class="flex gap-1">
@@ -37,23 +40,25 @@
     class="hidden"
     onchange={handleFileSelect}
   />
-
-  <button
-    class="w-9 h-9 overflow-hidden border rounded-md"
-    onclick={() => fileInput.click()}
-  >
-    {#if value}
+  {#if value}
+    <div class="w-9 h-9 overflow-hidden rounded-md relative group">
       <img src={value} alt="Preview" class="size-full object-cover" />
-    {:else}
-      <div class="size-full bg-gray-100"></div>
-    {/if}
-  </button>
-  <Button variant="outline" onclick={() => fileInput.click()}>
-    <Upload />
-  </Button>
+      <div
+        class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
+      >
+        <Button size="icon" variant="outline" onclick={() => fileInput.click()}>
+          <RefreshCcw />
+        </Button>
+      </div>
+    </div>
+  {:else}
+    <Button size="icon" variant="outline" onclick={() => fileInput.click()}>
+      <Upload />
+    </Button>
+  {/if}
   <Popover.Root>
-    <Popover.Trigger>
-      <Button variant="outline" size="icon">
+    <Popover.Trigger disabled={!value}>
+      <Button variant="outline" size="icon" disabled={!value}>
         <Frame />
       </Button>
     </Popover.Trigger>
