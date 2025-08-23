@@ -19,8 +19,7 @@
       typeof value === "object" &&
       "type" in value &&
       (value.type === "single" || value.type === "multi") &&
-      "value" in value &&
-      "label" in value
+      "value" in value
     );
   };
 </script>
@@ -32,24 +31,21 @@
         <Label for={key}>{key}</Label>
         <ImageInput bind:value={templateProps[key]} />
       {:else if isTextContent(templateProps[key])}
-        <Label for={key}>{templateProps[key].label}</Label>
+        <Label for={key}>{key}</Label>
         {#if isSingleLine(templateProps[key])}
           <Input
             id={key}
             bind:value={templateProps[key].value}
-            maxlength={100}
+            maxlength={templateProps[key].maxLength}
           />
         {:else if isMultiLine(templateProps[key])}
           <Textarea
             id={key}
             bind:value={templateProps[key].value}
             rows={templateProps[key].maxLines}
-            maxlength={500}
+            maxlength={templateProps[key].maxLength}
           />
         {/if}
-      {:else}
-        <Label for={key}>{key}</Label>
-        <Input id={key} bind:value={templateProps[key]} />
       {/if}
     </div>
   {/each}

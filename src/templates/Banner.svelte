@@ -1,22 +1,21 @@
 <script module>
   import { z } from "zod";
-  import { SingleLineTextSchema, MultiLineTextSchema } from "../lib/schemas/textContent.js";
+  import {
+    createMultiLineText,
+    createSingleLineText,
+  } from "../lib/schemas/textContent.js";
   import { createTemplateModule } from "../lib/utils/createTemplateModule.js";
 
   export const { config } = createTemplateModule({
     schema: {
-      title: SingleLineTextSchema.default({
-        type: "single",
+      title: createSingleLineText({
         value: "Default Title",
-        label: "タイトル",
-        placeholder: "タイトルを入力してください"
+        maxLength: 50,
       }),
-      description: MultiLineTextSchema.default({
-        type: "multi",
+      description: createMultiLineText({
         value: "Default Description",
-        label: "説明",
-        placeholder: "説明を入力してください",
-        maxLines: 3
+        maxLength: 200,
+        maxLines: 4,
       }),
       image: z.string().default(""),
     },
