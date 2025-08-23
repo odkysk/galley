@@ -1,13 +1,11 @@
 import type { Component } from "svelte";
-import type { ZodType } from "zod";
-import type { TemplateProps } from "../schemas/template.js";
+import type { TemplateProps, TemplateProp } from "../schemas/template.js";
 
 // Template interface
 export interface Template {
   name: string;
   component: Component;
   props: TemplateProps;
-  schema?: ZodType<TemplateProps>;
   size?: {
     width: number;
     height: number;
@@ -18,7 +16,7 @@ export interface Template {
 export interface TemplateSvelteModule {
   default: Component;
   config: {
-    schema?: ZodType<any>;
+    props: Record<string, TemplateProp>;
     size?: {
       width: number;
       height: number;

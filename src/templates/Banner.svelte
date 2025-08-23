@@ -1,5 +1,4 @@
 <script module>
-  import { z } from "zod";
   import { createTemplateModule } from "../lib/utils/createTemplateModule.js";
 
   export const { config } = createTemplateModule({
@@ -14,7 +13,7 @@
     },
   });
 
-  export type Props = z.infer<NonNullable<typeof config.schema>>;
+  export type Props = typeof config.props;
 </script>
 
 <script lang="ts">

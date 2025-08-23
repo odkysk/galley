@@ -1,4 +1,3 @@
-import { z } from "zod";
 import type { TemplateSvelteModule } from "../models/template.js";
 import type { TemplateProp } from "../schemas/template.js";
 
@@ -12,19 +11,9 @@ export interface TemplateConfig {
 }
 
 export function createTemplateModule(config: TemplateConfig): Pick<TemplateSvelteModule, 'config'> {
-  // Create a simple zod schema that defaults to the provided props
-  const zodSchema = z.object(
-    Object.fromEntries(
-      Object.entries(config.props).map(([key, prop]) => [
-        key,
-        z.any().default(prop)
-      ])
-    )
-  );
-  
   return {
     config: {
-      schema: zodSchema,
+      props: config.props,
       size: config.size
     }
   };

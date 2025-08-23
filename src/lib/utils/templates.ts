@@ -31,13 +31,11 @@ export function getTemplateNames(): string[] {
 export async function getTemplate(name: string): Promise<Template | null> {
   try {
     const module = await getTemplateModule(name);
-    const props = module?.config?.schema ? module.config.schema.parse({}) : {};
     let template: Template | null = null;
     if (module) {
       template = {
         name,
-        schema: module.config?.schema,
-        props: props,
+        props: module.config?.props ?? {},
         component: module.default,
         size: module.config?.size ?? undefined,
       };

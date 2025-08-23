@@ -1,43 +1,29 @@
-import { z } from "zod";
+// Simple template prop type definitions (no Zod)
+export type TextProp = {
+  type: "text";
+  value: string;
+  maxLength?: number;
+};
 
-// Simple template prop schemas
-export const TextPropSchema = z.object({
-  type: z.literal("text"),
-  value: z.string(),
-  maxLength: z.number().optional(),
-});
+export type TextareaProp = {
+  type: "textarea";
+  value: string;
+  maxLength?: number;
+  rows?: number;
+};
 
-export const TextareaPropSchema = z.object({
-  type: z.literal("textarea"),
-  value: z.string(),
-  maxLength: z.number().optional(),
-  rows: z.number().optional(),
-});
+export type ImageProp = {
+  type: "image";
+  value: string;
+};
 
-export const ImagePropSchema = z.object({
-  type: z.literal("image"),
-  value: z.string(),
-});
-
-export const EmailPropSchema = z.object({
-  type: z.literal("email"),
-  value: z.string(),
-});
+export type EmailProp = {
+  type: "email";
+  value: string;
+};
 
 // Union of all template prop types
-export const TemplatePropSchema = z.discriminatedUnion("type", [
-  TextPropSchema,
-  TextareaPropSchema,
-  ImagePropSchema,
-  EmailPropSchema,
-]);
-
-// Type exports
-export type TemplateProp = z.infer<typeof TemplatePropSchema>;
-export type TextProp = z.infer<typeof TextPropSchema>;
-export type TextareaProp = z.infer<typeof TextareaPropSchema>;
-export type ImageProp = z.infer<typeof ImagePropSchema>;
-export type EmailProp = z.infer<typeof EmailPropSchema>;
+export type TemplateProp = TextProp | TextareaProp | ImageProp | EmailProp;
 
 // Template props record
 export type TemplateProps = Record<string, TemplateProp>;
