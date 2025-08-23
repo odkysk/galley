@@ -10,6 +10,7 @@
 
   let loadTemplate = async () => {
     const template = await getTemplate(templateName);
+    templateProps = template?.props ?? {};
     if (!template) throw new Error(`Template "${templateName}" not found`);
     return template;
   };
@@ -27,12 +28,11 @@
     <p>Loading...</p>
   {:then template}
     {@const Component = template.component}
-    {@const props = template.props}
     <div class="flex min-h-dvh flex-1 flex-col gap-3 p-3 items-start">
       <h1 class="text-xl font-semibold">{template.name}</h1>
       <TemplateForm bind:templateProps />
       <div bind:this={templateElement}>
-        <Component {...props} />
+        <Component {...templateProps} />
       </div>
       <button
         onclick={handleExport}
