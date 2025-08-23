@@ -2,16 +2,16 @@
   import { z } from "zod";
   import { createTemplateModule } from "../lib/utils/createTemplateModule.js";
 
-  const { config } = createTemplateModule(
-    {
+  const { config } = createTemplateModule({
+    schema: {
       name: z.string().default("Default Name"),
       email: z.string().email().default("user@example.com"),
     },
-    {
+    size: {
       width: 400,
       height: 300,
     }
-  );
+  });
 
   export { config };
   export type ProfileProps = z.infer<NonNullable<typeof config.schema>>;

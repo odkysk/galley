@@ -2,16 +2,16 @@
   import { z } from "zod";
   import { createTemplateModule } from "../lib/utils/createTemplateModule.js";
 
-  export const { config } = createTemplateModule(
-    {
+  export const { config } = createTemplateModule({
+    schema: {
       title: z.string().default("Default Title"),
       description: z.string().default("Default Description"),
     },
-    {
+    size: {
       width: 400,
       height: 200,
-    }
-  );
+    },
+  });
 
   export type Props = z.infer<NonNullable<typeof config.schema>>;
 </script>

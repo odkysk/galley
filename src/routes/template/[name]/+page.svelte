@@ -39,9 +39,9 @@
   {:then template}
     {@const Component = template.component}
     <div class="flex min-h-dvh flex-1 flex-col gap-3 p-3 items-start">
-      <h1 class="text-3xl font-semibold">{template.name}</h1>
+      <h1 class="text-2xl font-semibold">{template.name}</h1>
       {#if template.size}
-        <p class="text-sm text-gray-500">
+        <p class="text-xs text-gray-500">
           {template.size.width} x {template.size.height}
         </p>
       {/if}
