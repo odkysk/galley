@@ -6,10 +6,10 @@
     schema: {
       title: z.string().default("Default Title"),
       description: z.string().default("Default Description"),
-      image: z.string().default("https://placehold.co/400x200"),
+      image: z.string().default(""),
     },
     size: {
-      width: 4000,
+      width: 400,
       height: 200,
     },
   });

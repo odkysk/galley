@@ -13,8 +13,8 @@ interface ExportOptions {
 }
 
 export async function exportAsImage(
-  element: HTMLElement, 
-  filename: string = "banner", 
+  element: HTMLElement,
+  filename: string = "banner",
   options: ExportOptions = {}
 ) {
   if (!element) {
@@ -25,10 +25,10 @@ export async function exportAsImage(
   try {
     const canvas = await html2canvas(element, {
       backgroundColor: null,
-      scale: 4,
+      scale: 2,
     });
 
-    const finalFilename = options.withDate 
+    const finalFilename = options.withDate
       ? `${filename}_${generateDateString()}`
       : filename;
 

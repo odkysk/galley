@@ -1,5 +1,7 @@
 <script lang="ts">
+  import { Button } from "$lib/components/ui/button";
   import { exportAsImage } from "$lib/utils/export";
+  import Download from "@lucide/svelte/icons/download";
 
   interface Props {
     templateElement: HTMLElement | undefined;
@@ -24,9 +26,8 @@
   }
 </script>
 
-<button
-  onclick={handleExport}
-  class="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
->
-  画像を保存
-</button>
+<div class="flex gap-3 justify-end w-full">
+  <Button onclick={handleExport}>
+    <Download /> 画像を保存
+  </Button>
+</div>
