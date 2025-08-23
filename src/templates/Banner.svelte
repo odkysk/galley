@@ -1,22 +1,20 @@
 <script module>
   import { z } from "zod";
-  import { SingleLineTextSchema, MultiLineTextSchema } from "../lib/schemas/textContent.js";
   import { createTemplateModule } from "../lib/utils/createTemplateModule.js";
+  import { createSingleTextProp, createMultiTextProp, createImageProp } from "../lib/schemas/template.js";
 
   export const { config } = createTemplateModule({
-    schema: {
-      title: SingleLineTextSchema.default({
-        type: "single",
+    props: {
+      title: createSingleTextProp({
         value: "Default Title",
         maxLength: 50,
       }),
-      description: MultiLineTextSchema.default({
-        type: "multi",
+      description: createMultiTextProp({
         value: "Default Description",
         maxLength: 200,
         maxLines: 4,
       }),
-      image: z.string().default(""),
+      image: createImageProp(""),
     },
     size: {
       width: 400,
@@ -39,9 +37,9 @@
     <h1>{title.value}</h1>
     <p>{description.value}</p>
   </div>
-  {#if image}
+  {#if image.value}
     <img
-      src={image}
+      src={image.value}
       alt="Banner"
       class="flex-1 h-full object-cover rounded overflow-hidden"
     />

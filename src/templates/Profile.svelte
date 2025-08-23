@@ -1,12 +1,18 @@
 <script module>
   import { z } from "zod";
   import { createTemplateModule } from "../lib/utils/createTemplateModule.js";
+  import { createStringProp, createImageProp } from "../lib/schemas/template.js";
 
   const { config } = createTemplateModule({
-    schema: {
-      name: z.string().default("Default Name"),
-      email: z.string().email().default("user@example.com"),
-      image: z.string().optional(),
+    props: {
+      name: createStringProp({
+        value: "Default Name",
+      }),
+      email: createStringProp({
+        value: "user@example.com",
+        validation: "email",
+      }),
+      image: createImageProp(""),
     },
     size: {
       width: 400,
@@ -26,13 +32,13 @@
   class="bg-white p-4 flex flex-col items-center"
   style="width: {config.size!.width}px; height: {config.size!.height}px"
 >
-  {#if image}
+  {#if image.value}
     <img
-      src={image}
+      src={image.value}
       alt="Profile"
       class="w-20 h-20 object-cover rounded-full mb-4"
     />
   {/if}
-  <h1 class="text-xl font-bold">{name}</h1>
-  <p class="text-gray-600">{email}</p>
+  <h1 class="text-xl font-bold">{name.value}</h1>
+  <p class="text-gray-600">{email.value}</p>
 </div>
