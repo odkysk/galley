@@ -16,7 +16,9 @@
 
   async function handleExport() {
     if (!templateElement) return;
-    await exportAsImage(templateElement, `${templateName}-banner`);
+    await exportAsImage(templateElement, `${templateName}_banner`, {
+      withDate: true,
+    });
   }
 </script>
 

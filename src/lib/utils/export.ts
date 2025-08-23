@@ -1,6 +1,22 @@
 import html2canvas from "html2canvas-pro";
 
-export async function exportAsImage(element: HTMLElement, filename: string = "banner") {
+function generateDateString(): string {
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth() + 1).padStart(2, "0");
+  const dd = String(today.getDate()).padStart(2, "0");
+  return `${yyyy}${mm}${dd}`;
+}
+
+interface ExportOptions {
+  withDate?: boolean;
+}
+
+export async function exportAsImage(
+  element: HTMLElement, 
+  filename: string = "banner", 
+  options: ExportOptions = {}
+) {
   if (!element) {
     console.error("Element not found");
     return;
@@ -12,8 +28,12 @@ export async function exportAsImage(element: HTMLElement, filename: string = "ba
       scale: 4,
     });
 
+    const finalFilename = options.withDate 
+      ? `${filename}_${generateDateString()}`
+      : filename;
+
     const link = document.createElement("a");
-    link.download = `${filename}.png`;
+    link.download = `${finalFilename}.png`;
     link.href = canvas.toDataURL("image/png");
     link.click();
   } catch (error) {
