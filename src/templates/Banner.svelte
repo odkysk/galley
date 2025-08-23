@@ -25,6 +25,9 @@
   import TemplateImage from "$lib/components/ui/TemplateImage.svelte";
 
   let { title, description, image }: Props = $props();
+  
+  // Type assertion to ensure image has frame property
+  const imageField = image as typeof image & { frame: import("$lib/models/template.js").ImageFrame };
 </script>
 
 <div
@@ -38,7 +41,7 @@
   {#if image.value}
     <TemplateImage
       src={image.value}
-      frame={image.frame}
+      frame={imageField.frame}
       class="flex-1 h-full rounded"
     />
   {/if}

@@ -1,10 +1,10 @@
 <script lang="ts">
   import { Button } from "$lib/components/ui/button/index.js";
   import * as Popover from "$lib/components/ui/popover/index.js";
+  import type { ImageFrame } from "$lib/models/template.js";
   import Frame from "@lucide/svelte/icons/frame";
   import Upload from "@lucide/svelte/icons/upload";
   import FrameControls from "./FrameControls.svelte";
-  import type { ImageFrame } from "$lib/models/template.js";
 
   let {
     value = $bindable(),
@@ -25,10 +25,8 @@
     }
   }
 
-  // Default frame if not provided
-  if (!frame) {
-    frame = { zoom: 1, x: 0, y: 0 };
-  }
+  // Initialize frame with default values if not provided
+  frame = frame || { zoom: 1, x: 0, y: 0 };
 </script>
 
 <div class="flex gap-1">
@@ -41,7 +39,7 @@
   />
 
   <button
-    class="w-9 h-9 rounded overflow-hidden border rounded-md"
+    class="w-9 h-9 overflow-hidden border rounded-md"
     onclick={() => fileInput.click()}
   >
     {#if value}
@@ -59,8 +57,10 @@
         <Frame />
       </Button>
     </Popover.Trigger>
-    <Popover.Content side="right">
-      <FrameControls bind:frame />
+    <Popover.Content side="right" class="w-auto">
+      {#if frame}
+        <FrameControls bind:frame />
+      {/if}
     </Popover.Content>
   </Popover.Root>
 </div>
