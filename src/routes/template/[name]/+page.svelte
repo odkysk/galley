@@ -1,5 +1,6 @@
 <script lang="ts">
   import TemplateForm from "$lib/components/page/template/TemplateForm.svelte";
+  import type { Template } from "$lib/models/template";
   import { exportAsImage } from "$lib/utils/export";
   import { getTemplate } from "$lib/utils/templates";
 
@@ -7,10 +8,12 @@
   let templateName = $derived(data.templateName);
   let templateProps = $state<any>({});
   let templateElement = $state<HTMLElement>();
+  let templateSize = $state<Template["size"] | undefined>(undefined);
 
   let loadTemplate = async () => {
     const template = await getTemplate(templateName);
     templateProps = template?.props ?? {};
+    templateSize = template?.size ?? { width: 400, height: 200 };
     if (!template) throw new Error(`Template "${templateName}" not found`);
     return template;
   };
@@ -37,6 +40,11 @@
     {@const Component = template.component}
     <div class="flex min-h-dvh flex-1 flex-col gap-3 p-3 items-start">
       <h1 class="text-3xl font-semibold">{template.name}</h1>
+      {#if template.size}
+        <p class="text-sm text-gray-500">
+          {template.size.width} x {template.size.height}
+        </p>
+      {/if}
       <TemplateForm bind:templateProps />
       <div
         class="bg-gray-200 p-3 w-full flex-1 flex items-center justify-center"

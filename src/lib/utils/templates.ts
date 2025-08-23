@@ -1,11 +1,10 @@
-import type { Template, TemplateModule } from "../models/template.js";
-import type { z } from "zod";
+import type { Template, TemplateSvelteModule } from "../models/template.js";
 
 // Get template names from filesystem dynamically
 
 export async function getTemplateModule<T = any>(
   name: string
-): Promise<TemplateModule<T> | null> {
+): Promise<TemplateSvelteModule<T> | null> {
   try {
     const module = await import(`../../templates/${name}.svelte`);
     return module;
@@ -28,17 +27,22 @@ export function getTemplateNames(): string[] {
     .filter((name) => name !== "");
 }
 
-export async function getTemplate<T = any>(name: string): Promise<Template<T> | null> {
+export async function getTemplate<T = any>(
+  name: string
+): Promise<Template<T> | null> {
   try {
     const module = await getTemplateModule<T>(name);
-    const props = module?.schema?.parse({}) as T;
+    const props = module?.config?.schema
+      ? module.config.schema.parse({})
+      : ({} as T);
     let template: Template<T> | null = null;
     if (module) {
       template = {
         name,
-        component: module.default,
+        schema: module.config?.schema,
         props: props ?? ({} as T),
-        schema: module.schema,
+        component: module.default,
+        size: module.config?.size ?? undefined,
       };
     }
     return template;
@@ -53,15 +57,9 @@ export async function getTemplates(): Promise<Template[]> {
   const templates: Template[] = [];
 
   for (const name of templateNames) {
-    const module = await getTemplateModule(name);
-    const props = module?.schema?.parse({}) as any;
-    if (module) {
-      templates.push({
-        name,
-        props: props ?? {},
-        component: module.default,
-        schema: module.schema,
-      });
+    const template = await getTemplate(name);
+    if (template) {
+      templates.push(template);
     }
   }
 
