@@ -11,10 +11,12 @@
     value = $bindable(),
     frame = $bindable(),
     blendMode = $bindable(),
+    imageField,
   }: {
     value?: string | null;
     frame?: ImageFrame;
     blendMode?: string;
+    imageField?: import("$lib/models/template.js").ImageField;
   } = $props();
 
   let fileInput: HTMLInputElement;
@@ -57,16 +59,18 @@
       <FileImage />
     </Button>
   {/if}
-  <Popover.Root>
-    <Popover.Trigger disabled={!value}>
-      <Button variant="outline" size="icon" disabled={!value}>
-        <Settings />
-      </Button>
-    </Popover.Trigger>
-    <Popover.Content side="right" class="w-auto">
-      {#if frame}
-        <FrameControls bind:frame bind:blendMode />
-      {/if}
-    </Popover.Content>
-  </Popover.Root>
+  {#if imageField?._usedByTemplateImage}
+    <Popover.Root>
+      <Popover.Trigger>
+        <Button variant="outline" size="icon" disabled={!value}>
+          <Settings />
+        </Button>
+      </Popover.Trigger>
+      <Popover.Content side="right" class="w-auto">
+        {#if frame}
+          <FrameControls bind:frame bind:blendMode />
+        {/if}
+      </Popover.Content>
+    </Popover.Root>
+  {/if}
 </div>

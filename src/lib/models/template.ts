@@ -26,6 +26,7 @@ export type ImageField = {
   value: string;
   frame?: ImageFrame;
   blendMode?: string;
+  _usedByTemplateImage?: boolean;
 };
 
 export type EmailField = {

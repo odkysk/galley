@@ -38,10 +38,8 @@
     <h1>{title.value}</h1>
     <p>{description.value}</p>
   </div>
-  {#if image.value}
-    <TemplateImage
-      imageField={imageField}
-      class="flex-1 h-full rounded"
-    />
-  {/if}
+  <TemplateImage
+    imageField={imageField}
+    class="flex-1 h-full rounded"
+  />
 </div>

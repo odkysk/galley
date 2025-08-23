@@ -10,6 +10,11 @@
     imageField: import("$lib/models/template.js").ImageField;
     class?: string;
   } & HTMLAttributes<HTMLDivElement> = $props();
+
+  // Mark this imageField as being used by TemplateImage immediately
+  if (imageField) {
+    imageField._usedByTemplateImage = true;
+  }
 </script>
 
 <div class="overflow-hidden {className}" {...rest}>
