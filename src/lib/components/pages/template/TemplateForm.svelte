@@ -3,8 +3,6 @@
   import { Input } from "$lib/components/ui/input";
   import { Label } from "$lib/components/ui/label";
   import { Textarea } from "$lib/components/ui/textarea";
-  import type { TextContent } from "$lib/schemas/textContent";
-  import { isMultiLine, isSingleLine } from "$lib/schemas/textContent";
   import type { ComponentProps } from "svelte";
 
   let {
@@ -32,13 +30,13 @@
         <ImageInput bind:value={templateProps[key]} />
       {:else if isTextContent(templateProps[key])}
         <Label for={key}>{key}</Label>
-        {#if isSingleLine(templateProps[key])}
+        {#if templateProps[key].type === "single"}
           <Input
             id={key}
             bind:value={templateProps[key].value}
             maxlength={templateProps[key].maxLength}
           />
-        {:else if isMultiLine(templateProps[key])}
+        {:else if templateProps[key].type === "multi"}
           <Textarea
             id={key}
             bind:value={templateProps[key].value}
