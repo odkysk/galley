@@ -1,20 +1,12 @@
 <script module>
   import { z } from "zod";
   import { createTemplateModule } from "../lib/utils/createTemplateModule.js";
-  import { createSingleTextProp, createMultiTextProp, createImageProp } from "../lib/schemas/template.js";
 
   export const { config } = createTemplateModule({
     props: {
-      title: createSingleTextProp({
-        value: "Default Title",
-        maxLength: 50,
-      }),
-      description: createMultiTextProp({
-        value: "Default Description",
-        maxLength: 200,
-        maxLines: 4,
-      }),
-      image: createImageProp(""),
+      title: { type: "text", value: "Default Title", maxLength: 50 },
+      description: { type: "textarea", value: "Default Description", maxLength: 200, rows: 4 },
+      image: { type: "image", value: "" },
     },
     size: {
       width: 400,

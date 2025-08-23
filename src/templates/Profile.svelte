@@ -1,18 +1,12 @@
 <script module>
   import { z } from "zod";
   import { createTemplateModule } from "../lib/utils/createTemplateModule.js";
-  import { createStringProp, createImageProp } from "../lib/schemas/template.js";
 
   const { config } = createTemplateModule({
     props: {
-      name: createStringProp({
-        value: "Default Name",
-      }),
-      email: createStringProp({
-        value: "user@example.com",
-        validation: "email",
-      }),
-      image: createImageProp(""),
+      name: { type: "text", value: "Default Name" },
+      email: { type: "email", value: "user@example.com" },
+      image: { type: "image", value: "" },
     },
     size: {
       width: 400,

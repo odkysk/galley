@@ -1,10 +1,11 @@
+// このファイルは、Svelteコンポーネントからテンプレート情報を取得するためのユーティリティ関数を提供します。
+// プロジェクト内の `src/templates` ディレクトリにあるSvelteファイルからテンプレート情報を動的に取得します。
+
 import type { Template, TemplateSvelteModule } from "../models/template.js";
 
-// Get template names from filesystem dynamically
-
-export async function getTemplateModule<T = any>(
+export async function getTemplateModule(
   name: string
-): Promise<TemplateSvelteModule<T> | null> {
+): Promise<TemplateSvelteModule | null> {
   try {
     const module = await import(`../../templates/${name}.svelte`);
     return module;
@@ -27,20 +28,16 @@ export function getTemplateNames(): string[] {
     .filter((name) => name !== "");
 }
 
-export async function getTemplate<T = any>(
-  name: string
-): Promise<Template<T> | null> {
+export async function getTemplate(name: string): Promise<Template | null> {
   try {
-    const module = await getTemplateModule<T>(name);
-    const props = module?.config?.schema
-      ? module.config.schema.parse({})
-      : ({} as T);
-    let template: Template<T> | null = null;
+    const module = await getTemplateModule(name);
+    const props = module?.config?.schema ? module.config.schema.parse({}) : {};
+    let template: Template | null = null;
     if (module) {
       template = {
         name,
         schema: module.config?.schema,
-        props: props ?? ({} as T),
+        props: props,
         component: module.default,
         size: module.config?.size ?? undefined,
       };

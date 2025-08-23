@@ -14,10 +14,7 @@
 
   const isTemplateProp = (value: any): value is TemplateProp => {
     return (
-      value &&
-      typeof value === "object" &&
-      "type" in value &&
-      "value" in value
+      value && typeof value === "object" && "type" in value && "value" in value
     );
   };
 </script>
@@ -29,25 +26,21 @@
         <Label for={key}>{key}</Label>
         {#if template.props[key].type === "image"}
           <ImageInput bind:value={template.props[key].value} />
-        {:else if template.props[key].type === "singleText"}
+        {:else if template.props[key].type === "text"}
           <Input
             id={key}
             bind:value={template.props[key].value}
             maxlength={template.props[key].maxLength}
           />
-        {:else if template.props[key].type === "multiText"}
+        {:else if template.props[key].type === "textarea"}
           <Textarea
             id={key}
             bind:value={template.props[key].value}
-            rows={template.props[key].maxLines}
+            rows={template.props[key].rows}
             maxlength={template.props[key].maxLength}
           />
-        {:else if template.props[key].type === "string"}
-          <Input
-            id={key}
-            bind:value={template.props[key].value}
-            type={template.props[key].validation === "email" ? "email" : template.props[key].validation === "url" ? "url" : "text"}
-          />
+        {:else if template.props[key].type === "email"}
+          <Input id={key} bind:value={template.props[key].value} type="email" />
         {/if}
       {/if}
     </div>
