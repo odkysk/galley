@@ -18,7 +18,7 @@
     <div class="flex flex-col gap-1">
       <Label for={key}>{key}</Label>
       {#if field.type === "image"}
-        <ImageInput bind:value={field.value} bind:frame={field.frame} />
+        <ImageInput bind:value={field.value} bind:frame={field.frame} bind:blendMode={field.blendMode} />
       {:else if field.type === "text"}
         <Input id={key} bind:value={field.value} maxlength={field.maxLength} />
       {:else if field.type === "textarea"}

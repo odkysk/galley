@@ -3,24 +3,22 @@
   import type { ImageFrame } from "$lib/models/template.js";
 
   let {
-    src,
-    frame = { zoom: 1, x: 0, y: 0, blendMode: "normal" },
+    imageField,
     class: className = "",
     ...rest
   }: {
-    src: string;
-    frame?: ImageFrame;
+    imageField: import("$lib/models/template.js").ImageField;
     class?: string;
   } & HTMLAttributes<HTMLDivElement> = $props();
 </script>
 
 <div class="overflow-hidden {className}" {...rest}>
-  {#if src}
+  {#if imageField.value}
     <img
-      {src}
+      src={imageField.value}
       alt=""
       class="w-full h-full object-cover"
-      style="transform: scale({frame.zoom}) translate({frame.x}px, {frame.y}px); transform-origin: center center; mix-blend-mode: {frame.blendMode || 'normal'};"
+      style="transform: scale({imageField.frame?.zoom || 1}) translate({imageField.frame?.x || 0}px, {imageField.frame?.y || 0}px); transform-origin: center center; mix-blend-mode: {imageField.blendMode || 'normal'};"
     />
   {/if}
 </div>

@@ -17,7 +17,8 @@ export function createTemplateModule(config: TemplateConfig): Pick<TemplateSvelt
     if (field.type === 'image') {
       processedFields[key] = {
         ...field,
-        frame: field.frame || { zoom: 1, x: 0, y: 0, blendMode: "normal" }
+        frame: field.frame || { zoom: 1, x: 0, y: 0 },
+        blendMode: field.blendMode || "normal"
       };
     } else {
       processedFields[key] = field;

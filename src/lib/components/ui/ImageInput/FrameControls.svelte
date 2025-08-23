@@ -14,8 +14,10 @@
 
   let {
     frame = $bindable(),
+    blendMode = $bindable(),
   }: {
     frame: ImageFrame;
+    blendMode?: string;
   } = $props();
 
   let displayZoom = $derived(Math.round(frame.zoom * 100));
@@ -29,8 +31,8 @@
   ];
 
   // Initialize blendMode if not set
-  if (!frame.blendMode) {
-    frame.blendMode = "normal";
+  if (!blendMode) {
+    blendMode = "normal";
   }
 
   function adjustZoom(delta: number) {
@@ -193,9 +195,9 @@
   </div>
   <div class="flex items-center gap-2">
     <Label class="text-xs w-12 text-gray-500">Blend</Label>
-    <Select.Root type="single" bind:value={frame.blendMode}>
+    <Select.Root type="single" bind:value={blendMode}>
       <Select.Trigger class="flex-1">
-        {blendModes.find(mode => mode.value === frame.blendMode)?.label || "Normal"}
+        {blendModes.find(mode => mode.value === blendMode)?.label || "Normal"}
       </Select.Trigger>
       <Select.Content>
         {#each blendModes as mode}

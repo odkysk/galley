@@ -5,7 +5,6 @@ export interface ImageFrame {
   zoom: number;
   x: number;
   y: number;
-  blendMode: string;
 }
 
 // Template field type definitions
@@ -26,6 +25,7 @@ export type ImageField = {
   type: "image";
   value: string;
   frame?: ImageFrame;
+  blendMode?: string;
 };
 
 export type EmailField = {

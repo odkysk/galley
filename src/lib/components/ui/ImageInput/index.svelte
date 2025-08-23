@@ -2,7 +2,7 @@
   import { Button } from "$lib/components/ui/button/index.js";
   import * as Popover from "$lib/components/ui/popover/index.js";
   import type { ImageFrame } from "$lib/models/template.js";
-  import Crop from "@lucide/svelte/icons/crop";
+  import Settings from "@lucide/svelte/icons/settings";
   import FileImage from "@lucide/svelte/icons/file-image";
   import RefreshCcw from "@lucide/svelte/icons/refresh-ccw";
   import FrameControls from "./FrameControls.svelte";
@@ -10,9 +10,11 @@
   let {
     value = $bindable(),
     frame = $bindable(),
+    blendMode = $bindable(),
   }: {
     value?: string | null;
     frame?: ImageFrame;
+    blendMode?: string;
   } = $props();
 
   let fileInput: HTMLInputElement;
@@ -27,7 +29,8 @@
   }
 
   // Initialize frame with default values if not provided
-  frame = frame || { zoom: 1, x: 0, y: 0, blendMode: "normal" };
+  frame = frame || { zoom: 1, x: 0, y: 0 };
+  blendMode = blendMode || "normal";
 </script>
 
 <div class="flex gap-1">
@@ -57,12 +60,12 @@
   <Popover.Root>
     <Popover.Trigger disabled={!value}>
       <Button variant="outline" size="icon" disabled={!value}>
-        <Crop />
+        <Settings />
       </Button>
     </Popover.Trigger>
     <Popover.Content side="right" class="w-auto">
       {#if frame}
-        <FrameControls bind:frame />
+        <FrameControls bind:frame bind:blendMode />
       {/if}
     </Popover.Content>
   </Popover.Root>
