@@ -1,14 +1,14 @@
 import type { Component } from "svelte";
 import type { ZodSchema } from "zod";
 
-export interface Template {
+export interface Template<T = any> {
   name: string;
   component: Component;
-  props: Record<string, any>;
-  schema?: ZodSchema;
+  props: T;
+  schema?: ZodSchema<T>;
 }
 
-export interface TemplateModule {
+export interface TemplateModule<T = any> {
   default: Component;
-  schema?: ZodSchema;
+  schema?: ZodSchema<T>;
 }
