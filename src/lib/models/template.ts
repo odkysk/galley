@@ -1,5 +1,12 @@
 import type { Component } from "svelte";
 
+// Common frame interface for images
+export interface ImageFrame {
+  zoom: number;
+  x: number;
+  y: number;
+}
+
 // Template field type definitions
 export type TextField = {
   type: "text";
@@ -17,6 +24,7 @@ export type TextareaField = {
 export type ImageField = {
   type: "image";
   value: string;
+  frame?: ImageFrame;
 };
 
 export type EmailField = {

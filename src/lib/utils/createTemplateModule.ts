@@ -10,9 +10,23 @@ export interface TemplateConfig {
 }
 
 export function createTemplateModule(config: TemplateConfig): Pick<TemplateSvelteModule, 'config'> {
+  // Auto-initialize frame for image fields
+  const processedFields: Record<string, TemplateField> = {};
+  
+  for (const [key, field] of Object.entries(config.fields)) {
+    if (field.type === 'image') {
+      processedFields[key] = {
+        ...field,
+        frame: field.frame || { zoom: 1, x: 0, y: 0 }
+      };
+    } else {
+      processedFields[key] = field;
+    }
+  }
+
   return {
     config: {
-      fields: config.fields,
+      fields: processedFields,
       size: config.size
     }
   };

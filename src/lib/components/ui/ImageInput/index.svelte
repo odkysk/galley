@@ -4,11 +4,14 @@
   import Frame from "@lucide/svelte/icons/frame";
   import Upload from "@lucide/svelte/icons/upload";
   import FrameControls from "./FrameControls.svelte";
+  import type { ImageFrame } from "$lib/models/template.js";
 
   let {
     value = $bindable(),
+    frame = $bindable(),
   }: {
     value?: string | null;
+    frame?: ImageFrame;
   } = $props();
 
   let fileInput: HTMLInputElement;
@@ -22,20 +25,10 @@
     }
   }
 
-  function clearImage() {
-    if (value) {
-      URL.revokeObjectURL(value);
-    }
-    value = null;
-    if (fileInput) {
-      fileInput.value = "";
-    }
+  // Default frame if not provided
+  if (!frame) {
+    frame = { zoom: 1, x: 0, y: 0 };
   }
-  let frame = $state({
-    zoom: 1,
-    x: 0,
-    y: 0,
-  });
 </script>
 
 <div class="flex gap-1">
@@ -60,9 +53,9 @@
   <Button variant="outline" onclick={() => fileInput.click()}>
     <Upload />
   </Button>
-  <Popover.Root open>
+  <Popover.Root>
     <Popover.Trigger>
-      <Button variant="outline" size="icon" onclick={clearImage}>
+      <Button variant="outline" size="icon">
         <Frame />
       </Button>
     </Popover.Trigger>

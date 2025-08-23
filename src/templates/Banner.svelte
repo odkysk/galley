@@ -4,7 +4,12 @@
   export const { config } = createTemplateModule({
     fields: {
       title: { type: "text", value: "Default Title", maxLength: 50 },
-      description: { type: "textarea", value: "Default Description", maxLength: 200, rows: 4 },
+      description: {
+        type: "textarea",
+        value: "Default Description",
+        maxLength: 200,
+        rows: 4,
+      },
       image: { type: "image", value: "" },
     },
     size: {
@@ -17,6 +22,8 @@
 </script>
 
 <script lang="ts">
+  import TemplateImage from "$lib/components/ui/TemplateImage.svelte";
+
   let { title, description, image }: Props = $props();
 </script>
 
@@ -29,10 +36,10 @@
     <p>{description.value}</p>
   </div>
   {#if image.value}
-    <img
+    <TemplateImage
       src={image.value}
-      alt="Banner"
-      class="flex-1 h-full object-cover rounded overflow-hidden"
+      frame={image.frame}
+      class="flex-1 h-full rounded"
     />
   {/if}
 </div>

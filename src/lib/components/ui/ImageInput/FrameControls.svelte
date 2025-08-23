@@ -8,11 +8,12 @@
   import MoveUp from "@lucide/svelte/icons/move-up";
   import ZoomIn from "@lucide/svelte/icons/zoom-in";
   import ZoomOut from "@lucide/svelte/icons/zoom-out";
+  import type { ImageFrame } from "$lib/models/template.js";
 
   let {
     frame = $bindable(),
   }: {
-    frame: { zoom: number; x: number; y: number };
+    frame: ImageFrame;
   } = $props();
 
   let displayZoom = $derived(Math.round(frame.zoom * 100));
