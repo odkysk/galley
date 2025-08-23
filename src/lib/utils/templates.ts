@@ -2,7 +2,6 @@ import type { Component } from 'svelte';
 
 export interface Template {
   name: string;
-  title: string;
   component: Component;
 }
 
@@ -27,7 +26,6 @@ export async function getTemplates(): Promise<Template[]> {
     if (component) {
       templates.push({
         name,
-        title: name,
         component
       });
     }

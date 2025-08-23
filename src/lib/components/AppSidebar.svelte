@@ -27,7 +27,7 @@
                 {#snippet child({ props })}
                   <a href={`/template/${template.name}`} {...props}>
                     <FileIcon />
-                    <span>{template.title}</span>
+                    <span>{template.name}</span>
                   </a>
                 {/snippet}
               </Sidebar.MenuButton>
