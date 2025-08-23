@@ -2,9 +2,9 @@
   import { Button } from "$lib/components/ui/button/index.js";
   import * as Popover from "$lib/components/ui/popover/index.js";
   import type { ImageFrame } from "$lib/models/template.js";
-  import Frame from "@lucide/svelte/icons/frame";
+  import Crop from "@lucide/svelte/icons/crop";
+  import FileImage from "@lucide/svelte/icons/file-image";
   import RefreshCcw from "@lucide/svelte/icons/refresh-ccw";
-  import Upload from "@lucide/svelte/icons/upload";
   import FrameControls from "./FrameControls.svelte";
 
   let {
@@ -53,13 +53,13 @@
     </div>
   {:else}
     <Button size="icon" variant="outline" onclick={() => fileInput.click()}>
-      <Upload />
+      <FileImage />
     </Button>
   {/if}
   <Popover.Root>
     <Popover.Trigger disabled={!value}>
       <Button variant="outline" size="icon" disabled={!value}>
-        <Frame />
+        <Crop />
       </Button>
     </Popover.Trigger>
     <Popover.Content side="right" class="w-auto">

@@ -3,7 +3,7 @@
 
   export const { config } = createTemplateModule({
     fields: {
-      title: { type: "text", value: "Default Title", maxLength: 50 },
+      title: { type: "text", value: "Default title", maxLength: 50 },
       description: {
         type: "textarea",
         value: "Default Description",
@@ -25,9 +25,11 @@
   import TemplateImage from "$lib/components/ui/TemplateImage.svelte";
 
   let { title, description, image }: Props = $props();
-  
+
   // Type assertion to ensure image has frame property
-  const imageField = image as typeof image & { frame: import("$lib/models/template.js").ImageFrame };
+  const imageField = image as typeof image & {
+    frame: import("$lib/models/template.js").ImageFrame;
+  };
 </script>
 
 <div

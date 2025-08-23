@@ -5,6 +5,7 @@ export interface ImageFrame {
   zoom: number;
   x: number;
   y: number;
+  blendMode: string;
 }
 
 // Template field type definitions

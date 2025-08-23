@@ -2,6 +2,8 @@
   import { Button } from "$lib/components/ui/button/index.js";
   import { Input } from "$lib/components/ui/input/index.js";
   import { Label } from "$lib/components/ui/label/index.js";
+  import * as Select from "$lib/components/ui/select/index.js";
+  import { Separator } from "$lib/components/ui/separator/index.js";
   import type { ImageFrame } from "$lib/models/template.js";
   import MoveDown from "@lucide/svelte/icons/move-down";
   import MoveLeft from "@lucide/svelte/icons/move-left";
@@ -19,6 +21,26 @@
   let displayZoom = $derived(Math.round(frame.zoom * 100));
   let holdTimeout: number | null = null;
   let holdInterval: number | null = null;
+
+  const blendModes = [
+    { value: "normal", label: "Normal" },
+    { value: "multiply", label: "Multiply" },
+    { value: "screen", label: "Screen" },
+    { value: "overlay", label: "Overlay" },
+    { value: "darken", label: "Darken" },
+    { value: "lighten", label: "Lighten" },
+    { value: "color-dodge", label: "Color Dodge" },
+    { value: "color-burn", label: "Color Burn" },
+    { value: "hard-light", label: "Hard Light" },
+    { value: "soft-light", label: "Soft Light" },
+    { value: "difference", label: "Difference" },
+    { value: "exclusion", label: "Exclusion" },
+  ];
+
+  // Initialize blendMode if not set
+  if (!frame.blendMode) {
+    frame.blendMode = "normal";
+  }
 
   function adjustZoom(delta: number) {
     frame.zoom = Math.max(0.1, frame.zoom + delta * 0.01);
@@ -61,7 +83,7 @@
 <div class="flex flex-col gap-2">
   <div class="flex items-center gap-2">
     <Label class="text-xs w-12 text-gray-500">Zoom</Label>
-    <div class="flex items-center gap-1">
+    <div class="flex items-center gap-2">
       <Button
         variant="outline"
         size="icon"
@@ -104,9 +126,12 @@
       </Button>
     </div>
   </div>
+  <div class="w-[calc(100%+32px)] ml-[-16px]">
+    <Separator class="w-full" />
+  </div>
   <div class="flex items-center gap-2">
     <Label class="text-xs w-12 text-gray-500">X</Label>
-    <div class="flex items-center gap-1">
+    <div class="flex items-center gap-2">
       <Button
         variant="outline"
         size="icon"
@@ -136,9 +161,12 @@
       </Button>
     </div>
   </div>
+  <div class=" w-[calc(100%+32px)] ml-[-16px]">
+    <Separator class="w-full" />
+  </div>
   <div class="flex items-center gap-2">
     <Label class="text-xs w-12 text-gray-500">Y</Label>
-    <div class="flex items-center gap-1">
+    <div class="flex items-center gap-2">
       <Button
         variant="outline"
         size="icon"
@@ -168,5 +196,19 @@
         <MoveDown />
       </Button>
     </div>
+  </div>
+  <div class=" w-[calc(100%+32px)] ml-[-16px]">
+    <Separator class="w-full" />
+  </div>
+  <div class="flex items-center gap-2">
+    <Label class="text-xs w-12 text-gray-500">Blend</Label>
+    <Select.Root bind:selected={frame.blendMode}>
+      <Select.Trigger class="flex-1">slect</Select.Trigger>
+      <Select.Content>
+        {#each blendModes as mode}
+          <Select.Item value={mode.value}>{mode.label}</Select.Item>
+        {/each}
+      </Select.Content>
+    </Select.Root>
   </div>
 </div>
