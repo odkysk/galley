@@ -3,8 +3,7 @@
   import { Input } from "$lib/components/ui/input";
   import { Label } from "$lib/components/ui/label";
   import { Textarea } from "$lib/components/ui/textarea";
-  import type { Template } from "$lib/models/template";
-  import type { TemplateProp } from "$lib/schemas/template";
+  import type { Template, TemplateProp } from "$lib/models/template";
 
   let {
     template = $bindable(),

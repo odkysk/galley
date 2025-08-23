@@ -5,8 +5,8 @@
   import Skeleton from "$lib/components/pages/template/Skeleton.svelte";
   import TemplateError from "$lib/components/pages/template/TemplateError.svelte";
   import TemplateForm from "$lib/components/pages/template/TemplateForm.svelte";
-  import { getTemplate } from "$lib/utils/templates";
   import type { Template } from "$lib/models/template";
+  import { getTemplate } from "$lib/utils/templates";
 
   let { data } = $props();
   let templateName = $derived(data.templateName);
@@ -15,7 +15,8 @@
 
   let loadTemplate = async () => {
     const loadedTemplate = await getTemplate(templateName);
-    if (!loadedTemplate) throw new Error(`Template "${templateName}" not found`);
+    if (!loadedTemplate)
+      throw new Error(`Template "${templateName}" not found`);
     template = loadedTemplate;
     return loadedTemplate;
   };
@@ -33,9 +34,15 @@
       {#if template}
         <TemplateForm bind:template />
         <Canvas>
-          <div bind:this={templateElement}><Component {...template.props} /></div>
+          <div bind:this={templateElement}>
+            <Component {...template.props} />
+          </div>
         </Canvas>
-        <Export {templateElement} {templateName} templateProps={template.props} />
+        <Export
+          {templateElement}
+          {templateName}
+          templateProps={template.props}
+        />
       {/if}
     </div>
   {:catch error}

@@ -1,5 +1,4 @@
-import type { TemplateSvelteModule } from "../models/template.js";
-import type { TemplateProp } from "../schemas/template.js";
+import type { TemplateSvelteModule, TemplateProp } from "../models/template.js";
 
 // Simple template config
 export interface TemplateConfig {
