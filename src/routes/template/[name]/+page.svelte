@@ -1,7 +1,7 @@
 <script lang="ts">
   import TemplateForm from "$lib/components/page/template/TemplateForm.svelte";
   import { exportAsImage } from "$lib/utils/export";
-  import { importTemplate } from "$lib/utils/templates";
+  import { getTemplate } from "$lib/utils/templates";
 
   let { data } = $props();
   let templateName = $derived(data.templateName);
@@ -9,9 +9,9 @@
   let templateElement = $state<HTMLElement>();
 
   let loadTemplate = async () => {
-    const result = await importTemplate(templateName);
-    templateProps = result.props;
-    return result.component;
+    const template = await getTemplate(templateName);
+    if (!template) throw new Error(`Template "${templateName}" not found`);
+    return template;
   };
 
   async function handleExport() {
@@ -23,12 +23,14 @@
 <div class="flex-1 bg-gray-200">
   {#await loadTemplate()}
     <p>Loading...</p>
-  {:then TemplateComponent}
+  {:then template}
+    {@const Component = template.component}
+    {@const props = template.props}
     <div class="flex min-h-dvh flex-1 flex-col gap-3 p-3 items-start">
-      <h1 class="text-xl font-semibold">{data.templateName}</h1>
+      <h1 class="text-xl font-semibold">{template.name}</h1>
       <TemplateForm bind:templateProps />
       <div bind:this={templateElement}>
-        <TemplateComponent {...templateProps} />
+        <Component {...props} />
       </div>
       <button
         onclick={handleExport}

@@ -1,18 +1,15 @@
 <script lang="ts">
   import * as Sidebar from "$lib/components/ui/sidebar/index.js";
-  import { getTemplates, type Template } from "$lib/utils/templates.js";
+  import { getTemplateNames } from "$lib/utils/templates.js";
   import FileIcon from "@lucide/svelte/icons/file";
 
   // Dynamically load templates from filesystem
-  let templates: Template[] = $state([]);
+  let templates: string[] = $state([]);
 
   // Load templates on mount
   $effect(() => {
-    getTemplates().then((loadedTemplates: Template[]) => {
-      templates = loadedTemplates;
-    });
+    templates = getTemplateNames();
   });
-
 </script>
 
 <Sidebar.Root>
@@ -21,13 +18,13 @@
       <Sidebar.GroupLabel>Templates</Sidebar.GroupLabel>
       <Sidebar.GroupContent>
         <Sidebar.Menu>
-          {#each templates as template (template.name)}
+          {#each templates as template}
             <Sidebar.MenuItem>
               <Sidebar.MenuButton>
                 {#snippet child({ props })}
-                  <a href={`/template/${template.name}`} {...props}>
+                  <a href={`/template/${template}`} {...props}>
                     <FileIcon />
-                    <span>{template.name}</span>
+                    <span>{template}</span>
                   </a>
                 {/snippet}
               </Sidebar.MenuButton>
