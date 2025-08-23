@@ -20,12 +20,14 @@
   };
 </script>
 
-<div class="flex-1">
+<div class="flex-1 max-w-full">
   {#await loadTemplate()}
     <Skeleton />
   {:then template}
     {@const Component = template.component}
-    <div class="flex min-h-dvh flex-1 flex-col gap-3 p-3 items-start">
+    <div
+      class="flex min-h-dvh flex-1 flex-col gap-3 p-3 items-start max-w-full"
+    >
       <Information {template} />
       <TemplateForm bind:templateProps />
       <Canvas>

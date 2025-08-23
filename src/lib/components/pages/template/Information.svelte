@@ -10,3 +10,6 @@
     {template.size.width} x {template.size.height}
   </p>
 {/if}
+<pre class="text-xs text-gray-500">
+  {JSON.stringify(template.props, null, 2)}
+</pre>

@@ -6,9 +6,10 @@
     schema: {
       title: z.string().default("Default Title"),
       description: z.string().default("Default Description"),
+      image: z.string().default("https://placehold.co/400x200"),
     },
     size: {
-      width: 400,
+      width: 4000,
       height: 200,
     },
   });
@@ -17,13 +18,22 @@
 </script>
 
 <script lang="ts">
-  let { title, description }: Props = $props();
+  let { title, description, image }: Props = $props();
 </script>
 
 <div
-  class="bg-gray-300 p-4"
+  class="bg-gray-300 p-4 flex"
   style="width: {config.size!.width}px; height: {config.size!.height}px"
 >
-  <h1>{title}</h1>
-  <p>{description}</p>
+  <div class="flex-1">
+    <h1>{title}</h1>
+    <p>{description}</p>
+  </div>
+  {#if image}
+    <img
+      src={image}
+      alt="Banner"
+      class="flex-1 h-full object-cover rounded overflow-hidden"
+    />
+  {/if}
 </div>

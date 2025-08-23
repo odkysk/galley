@@ -6,6 +6,7 @@
     schema: {
       name: z.string().default("Default Name"),
       email: z.string().email().default("user@example.com"),
+      image: z.string().optional(),
     },
     size: {
       width: 400,
@@ -18,13 +19,20 @@
 </script>
 
 <script lang="ts">
-  let { name, email }: ProfileProps = $props();
+  let { name, email, image }: ProfileProps = $props();
 </script>
 
 <div
-  class="bg-white p-4"
+  class="bg-white p-4 flex flex-col items-center"
   style="width: {config.size!.width}px; height: {config.size!.height}px"
 >
-  <h1>{name}</h1>
-  <p>{email}</p>
+  {#if image}
+    <img
+      src={image}
+      alt="Profile"
+      class="w-20 h-20 object-cover rounded-full mb-4"
+    />
+  {/if}
+  <h1 class="text-xl font-bold">{name}</h1>
+  <p class="text-gray-600">{email}</p>
 </div>

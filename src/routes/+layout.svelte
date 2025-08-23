@@ -8,7 +8,7 @@
 
 <Sidebar.Provider>
   <AppSidebar />
-  <div class="flex-1">
+  <main class="w-full">
     {@render children?.()}
-  </div>
+  </main>
 </Sidebar.Provider>
