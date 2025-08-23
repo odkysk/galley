@@ -32,6 +32,35 @@ export async function exportAsImage(
       ? `${filename}_${generateDateString()}`
       : filename;
 
+    // File System Access APIが利用可能かチェック
+    if ('showSaveFilePicker' in window) {
+      try {
+        const fileHandle = await (window as any).showSaveFilePicker({
+          suggestedName: `${finalFilename}.png`,
+          types: [{
+            description: 'PNG files',
+            accept: { 'image/png': ['.png'] }
+          }]
+        });
+        
+        canvas.toBlob(async (blob) => {
+          if (blob) {
+            const writable = await fileHandle.createWritable();
+            await writable.write(blob);
+            await writable.close();
+          }
+        }, 'image/png');
+        return;
+      } catch (error: any) {
+        // ユーザーがキャンセルした場合は何もしない
+        if (error.name === 'AbortError') {
+          return;
+        }
+        console.warn('File System Access API failed, falling back to download:', error);
+      }
+    }
+
+    // フォールバック: 従来のダウンロード方法
     const link = document.createElement("a");
     link.download = `${finalFilename}.png`;
     link.href = canvas.toDataURL("image/png");
