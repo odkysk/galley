@@ -1,58 +1,27 @@
 <script lang="ts">
   import { Input } from "$lib/components/ui/input";
-  import html2canvas from "html2canvas-pro";
-  import type { Component } from "svelte";
+  import { importTemplate } from "$lib/utils/template";
+  import { exportAsImage } from "$lib/utils/export";
 
   let { data } = $props();
   let templateName = $derived(data.templateName);
   let templateProps = $state<any>({});
   let templateElement = $state<HTMLElement>();
 
-  let importTemplate = async () => {
-    try {
-      if (!templateName) throw new Error("Template name is undefined");
-
-      const modulePath = `../../../templates/${templateName}.svelte`;
-      const module = await import(modulePath);
-      const templateComponent: Component = module.default;
-      if (module.schema) {
-        templateProps = module.schema.parse({});
-      }
-
-      if (!templateComponent)
-        throw new Error(`Template "${templateName}" not found`);
-
-      return templateComponent;
-    } catch (error) {
-      console.error(`Failed to load template "${templateName}":`, error);
-      throw error;
-    }
+  let loadTemplate = async () => {
+    const result = await importTemplate(templateName);
+    templateProps = result.props;
+    return result.component;
   };
 
-  async function exportAsImage() {
-    if (!templateElement) {
-      console.error("Template element not found");
-      return;
-    }
-
-    try {
-      const canvas = await html2canvas(templateElement, {
-        backgroundColor: null,
-        scale: 4,
-      });
-
-      const link = document.createElement("a");
-      link.download = `${templateName}-banner.png`;
-      link.href = canvas.toDataURL("image/png");
-      link.click();
-    } catch (error) {
-      console.error("Failed to export image:", error);
-    }
+  async function handleExport() {
+    if (!templateElement) return;
+    await exportAsImage(templateElement, `${templateName}-banner`);
   }
 </script>
 
 <div class="flex-1 bg-gray-200">
-  {#await importTemplate()}
+  {#await loadTemplate()}
     <p>Loading...</p>
   {:then TemplateComponent}
     <div class="flex min-h-dvh flex-1 flex-col gap-3 p-3 items-start">
@@ -66,7 +35,7 @@
         <TemplateComponent {...templateProps} />
       </div>
       <button
-        onclick={exportAsImage}
+        onclick={handleExport}
         class="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
       >
         画像を保存
