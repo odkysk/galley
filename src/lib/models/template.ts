@@ -1,40 +1,40 @@
 import type { Component } from "svelte";
 
-// Template prop type definitions
-export type TextProp = {
+// Template field type definitions
+export type TextField = {
   type: "text";
   value: string;
   maxLength?: number;
 };
 
-export type TextareaProp = {
+export type TextareaField = {
   type: "textarea";
   value: string;
   maxLength?: number;
   rows?: number;
 };
 
-export type ImageProp = {
+export type ImageField = {
   type: "image";
   value: string;
 };
 
-export type EmailProp = {
+export type EmailField = {
   type: "email";
   value: string;
 };
 
-// Union of all template prop types
-export type TemplateProp = TextProp | TextareaProp | ImageProp | EmailProp;
+// Union of all template field types
+export type TemplateField = TextField | TextareaField | ImageField | EmailField;
 
-// Template props record
-export type TemplateProps = Record<string, TemplateProp>;
+// Template fields record
+export type TemplateFields = Record<string, TemplateField>;
 
 // Template interface
 export interface Template {
   name: string;
   component: Component;
-  props: TemplateProps;
+  fields: TemplateFields;
   size?: {
     width: number;
     height: number;
@@ -45,7 +45,7 @@ export interface Template {
 export interface TemplateSvelteModule {
   default: Component;
   config: {
-    props: Record<string, TemplateProp>;
+    fields: Record<string, TemplateField>;
     size?: {
       width: number;
       height: number;

@@ -2,7 +2,7 @@
   import { createTemplateModule } from "../lib/utils/createTemplateModule.js";
 
   const { config } = createTemplateModule({
-    props: {
+    fields: {
       name: { type: "text", value: "Default Name" },
       email: { type: "email", value: "user@example.com" },
       image: { type: "image", value: "" },
@@ -14,7 +14,7 @@
   });
 
   export { config };
-  export type ProfileProps = typeof config.props;
+  export type ProfileProps = typeof config.fields;
 </script>
 
 <script lang="ts">

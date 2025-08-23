@@ -1,8 +1,8 @@
-import type { TemplateSvelteModule, TemplateProp } from "../models/template.js";
+import type { TemplateSvelteModule, TemplateField } from "../models/template.js";
 
 // Simple template config
 export interface TemplateConfig {
-  props: Record<string, TemplateProp>;
+  fields: Record<string, TemplateField>;
   size: {
     width: number;
     height: number;
@@ -12,7 +12,7 @@ export interface TemplateConfig {
 export function createTemplateModule(config: TemplateConfig): Pick<TemplateSvelteModule, 'config'> {
   return {
     config: {
-      props: config.props,
+      fields: config.fields,
       size: config.size
     }
   };

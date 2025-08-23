@@ -35,13 +35,13 @@
         <TemplateForm bind:template />
         <Canvas>
           <div bind:this={templateElement}>
-            <Component {...template.props} />
+            <Component {...template.fields} />
           </div>
         </Canvas>
         <Export
           {templateElement}
           {templateName}
-          templateProps={template.props}
+          templateFields={template.fields}
         />
       {/if}
     </div>

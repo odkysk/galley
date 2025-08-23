@@ -2,7 +2,7 @@
   import { createTemplateModule } from "../lib/utils/createTemplateModule.js";
 
   export const { config } = createTemplateModule({
-    props: {
+    fields: {
       title: { type: "text", value: "Default Title", maxLength: 50 },
       description: { type: "textarea", value: "Default Description", maxLength: 200, rows: 4 },
       image: { type: "image", value: "" },
@@ -13,7 +13,7 @@
     },
   });
 
-  export type Props = typeof config.props;
+  export type Props = typeof config.fields;
 </script>
 
 <script lang="ts">
