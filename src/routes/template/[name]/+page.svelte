@@ -17,22 +17,33 @@
 
   async function handleExport() {
     if (!templateElement) return;
-    await exportAsImage(templateElement, `${templateName}_banner`, {
-      withDate: true,
-    });
+    const firstStringPropValue = Object.values(templateProps).find(
+      (value) => typeof value === "string"
+    );
+    await exportAsImage(
+      templateElement,
+      `${templateName}_${firstStringPropValue ?? ""}`,
+      {
+        withDate: true,
+      }
+    );
   }
 </script>
 
-<div class="flex-1 bg-gray-200">
+<div class="flex-1">
   {#await loadTemplate()}
     <p>Loading...</p>
   {:then template}
     {@const Component = template.component}
     <div class="flex min-h-dvh flex-1 flex-col gap-3 p-3 items-start">
-      <h1 class="text-xl font-semibold">{template.name}</h1>
+      <h1 class="text-3xl font-semibold">{template.name}</h1>
       <TemplateForm bind:templateProps />
-      <div bind:this={templateElement}>
-        <Component {...templateProps} />
+      <div
+        class="bg-gray-200 p-3 w-full flex-1 flex items-center justify-center"
+      >
+        <div bind:this={templateElement}>
+          <Component {...templateProps} />
+        </div>
       </div>
       <button
         onclick={handleExport}
