@@ -27,9 +27,7 @@
   }
 
   // Initialize frame with default values if not provided
-  frame = frame || { zoom: 1, x: 0, y: 0 };
-
-  let blendMode = $state("normal");
+  frame = frame || { zoom: 1, x: 0, y: 0, blendMode: "normal" };
 </script>
 
 <div class="flex gap-1">

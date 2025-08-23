@@ -4,7 +4,7 @@
 
   let {
     src,
-    frame = { zoom: 1, x: 0, y: 0 },
+    frame = { zoom: 1, x: 0, y: 0, blendMode: "normal" },
     class: className = "",
     ...rest
   }: {
@@ -20,7 +20,7 @@
       {src}
       alt=""
       class="w-full h-full object-cover"
-      style="transform: scale({frame.zoom}) translate({frame.x}px, {frame.y}px); transform-origin: center center;"
+      style="transform: scale({frame.zoom}) translate({frame.x}px, {frame.y}px); transform-origin: center center; mix-blend-mode: {frame.blendMode || 'normal'};"
     />
   {/if}
 </div>

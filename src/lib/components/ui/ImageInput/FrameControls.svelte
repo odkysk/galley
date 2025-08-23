@@ -26,15 +26,6 @@
     { value: "normal", label: "Normal" },
     { value: "multiply", label: "Multiply" },
     { value: "screen", label: "Screen" },
-    { value: "overlay", label: "Overlay" },
-    { value: "darken", label: "Darken" },
-    { value: "lighten", label: "Lighten" },
-    { value: "color-dodge", label: "Color Dodge" },
-    { value: "color-burn", label: "Color Burn" },
-    { value: "hard-light", label: "Hard Light" },
-    { value: "soft-light", label: "Soft Light" },
-    { value: "difference", label: "Difference" },
-    { value: "exclusion", label: "Exclusion" },
   ];
 
   // Initialize blendMode if not set
@@ -202,8 +193,10 @@
   </div>
   <div class="flex items-center gap-2">
     <Label class="text-xs w-12 text-gray-500">Blend</Label>
-    <Select.Root bind:selected={frame.blendMode}>
-      <Select.Trigger class="flex-1">slect</Select.Trigger>
+    <Select.Root type="single" bind:value={frame.blendMode}>
+      <Select.Trigger class="flex-1">
+        {blendModes.find(mode => mode.value === frame.blendMode)?.label || "Normal"}
+      </Select.Trigger>
       <Select.Content>
         {#each blendModes as mode}
           <Select.Item value={mode.value}>{mode.label}</Select.Item>
