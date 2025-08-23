@@ -1,5 +1,6 @@
 <script lang="ts">
   import TemplateForm from "$lib/components/page/template/TemplateForm.svelte";
+  import { Skeleton } from "$lib/components/ui/skeleton";
   import type { Template } from "$lib/models/template";
   import { exportAsImage } from "$lib/utils/export";
   import { getTemplate } from "$lib/utils/templates";
@@ -35,7 +36,11 @@
 
 <div class="flex-1">
   {#await loadTemplate()}
-    <p>Loading...</p>
+    <div class="flex-1 p-3 flex flex-col gap-3 min-h-dvh">
+      <Skeleton class="h-8 w-64" />
+      <Skeleton class="h-4 w-32" />
+      <Skeleton class="flex-1 w-full" />
+    </div>
   {:then template}
     {@const Component = template.component}
     <div class="flex min-h-dvh flex-1 flex-col gap-3 p-3 items-start">
