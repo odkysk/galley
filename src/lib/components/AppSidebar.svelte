@@ -1,6 +1,6 @@
 <script lang="ts">
   import * as Sidebar from "$lib/components/ui/sidebar/index.js";
-  import { getTemplates, type Template } from "$lib/templates.js";
+  import { getTemplates, type Template } from "$lib/utils/templates.js";
   import FileIcon from "@lucide/svelte/icons/file";
 
   // Dynamically load templates from filesystem

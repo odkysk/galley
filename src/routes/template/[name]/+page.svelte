@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Input } from "$lib/components/ui/input";
-  import { importTemplate } from "$lib/utils/template";
+  import { importTemplate } from "$lib/utils/templates";
   import { exportAsImage } from "$lib/utils/export";
 
   let { data } = $props();
