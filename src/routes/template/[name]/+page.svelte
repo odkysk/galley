@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { Input } from "$lib/components/ui/input";
-  import { importTemplate } from "$lib/utils/templates";
+  import TemplateForm from "$lib/components/page/template/TemplateForm.svelte";
   import { exportAsImage } from "$lib/utils/export";
+  import { importTemplate } from "$lib/utils/templates";
 
   let { data } = $props();
   let templateName = $derived(data.templateName);
@@ -26,11 +26,7 @@
   {:then TemplateComponent}
     <div class="flex min-h-dvh flex-1 flex-col gap-3 p-3 items-start">
       <h1 class="text-xl font-semibold">{data.templateName}</h1>
-      <div class="flex gap-3">
-        {#each Object.keys(templateProps) as key}
-          <Input bind:value={templateProps[key]} />
-        {/each}
-      </div>
+      <TemplateForm bind:templateProps />
       <div bind:this={templateElement}>
         <TemplateComponent {...templateProps} />
       </div>
