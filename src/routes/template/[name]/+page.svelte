@@ -28,7 +28,9 @@
     <div class="flex min-h-dvh flex-1 flex-col gap-3 p-3 items-start">
       <Information {template} />
       <TemplateForm bind:templateProps />
-      <Canvas {Component} {templateProps} bind:templateElement />
+      <Canvas>
+        <div bind:this={templateElement}><Component {...templateProps} /></div>
+      </Canvas>
       <Export {templateElement} {templateName} {templateProps} />
     </div>
   {:catch error}
