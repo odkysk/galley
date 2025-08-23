@@ -1,18 +1,17 @@
 <script module>
   import { z } from "zod";
-  import {
-    createMultiLineText,
-    createSingleLineText,
-  } from "../lib/schemas/textContent.js";
+  import { SingleLineTextSchema, MultiLineTextSchema } from "../lib/schemas/textContent.js";
   import { createTemplateModule } from "../lib/utils/createTemplateModule.js";
 
   export const { config } = createTemplateModule({
     schema: {
-      title: createSingleLineText({
+      title: SingleLineTextSchema.default({
+        type: "single",
         value: "Default Title",
         maxLength: 50,
       }),
-      description: createMultiLineText({
+      description: MultiLineTextSchema.default({
+        type: "multi",
         value: "Default Description",
         maxLength: 200,
         maxLines: 4,

@@ -3,12 +3,13 @@
   import { Input } from "$lib/components/ui/input";
   import { Label } from "$lib/components/ui/label";
   import { Textarea } from "$lib/components/ui/textarea";
-  import type { ComponentProps } from "svelte";
+  import type { Template } from "$lib/models/template";
+  import type { TextContent } from "$lib/schemas/textContent";
 
   let {
-    templateProps = $bindable(),
+    template = $bindable(),
   }: {
-    templateProps: ComponentProps<any>;
+    template: Template;
   } = $props();
 
   const isTextContent = (value: any): value is TextContent => {
@@ -23,25 +24,25 @@
 </script>
 
 <div class="flex gap-3">
-  {#each Object.keys(templateProps) as key}
+  {#each Object.keys(template.props) as key}
     <div class="flex flex-col gap-1">
       {#if key === "image"}
         <Label for={key}>{key}</Label>
-        <ImageInput bind:value={templateProps[key]} />
-      {:else if isTextContent(templateProps[key])}
+        <ImageInput bind:value={template.props[key]} />
+      {:else if isTextContent(template.props[key])}
         <Label for={key}>{key}</Label>
-        {#if templateProps[key].type === "single"}
+        {#if template.props[key].type === "single"}
           <Input
             id={key}
-            bind:value={templateProps[key].value}
-            maxlength={templateProps[key].maxLength}
+            bind:value={template.props[key].value}
+            maxlength={template.props[key].maxLength}
           />
-        {:else if templateProps[key].type === "multi"}
+        {:else if template.props[key].type === "multi"}
           <Textarea
             id={key}
-            bind:value={templateProps[key].value}
-            rows={templateProps[key].maxLines}
-            maxlength={templateProps[key].maxLength}
+            bind:value={template.props[key].value}
+            rows={template.props[key].maxLines}
+            maxlength={template.props[key].maxLength}
           />
         {/if}
       {/if}

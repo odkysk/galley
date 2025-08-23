@@ -6,34 +6,37 @@
   import TemplateError from "$lib/components/pages/template/TemplateError.svelte";
   import TemplateForm from "$lib/components/pages/template/TemplateForm.svelte";
   import { getTemplate } from "$lib/utils/templates";
+  import type { Template } from "$lib/models/template";
 
   let { data } = $props();
   let templateName = $derived(data.templateName);
-  let templateProps = $state<any>({});
+  let template = $state<Template | null>(null);
   let templateElement = $state<HTMLElement>();
 
   let loadTemplate = async () => {
-    const template = await getTemplate(templateName);
-    templateProps = template?.props ?? {};
-    if (!template) throw new Error(`Template "${templateName}" not found`);
-    return template;
+    const loadedTemplate = await getTemplate(templateName);
+    if (!loadedTemplate) throw new Error(`Template "${templateName}" not found`);
+    template = loadedTemplate;
+    return loadedTemplate;
   };
 </script>
 
 <div class="flex-1 max-w-full">
   {#await loadTemplate()}
     <Skeleton />
-  {:then template}
-    {@const Component = template.component}
+  {:then loadedTemplate}
+    {@const Component = loadedTemplate.component}
     <div
       class="flex min-h-dvh flex-1 flex-col gap-3 p-3 items-start max-w-full"
     >
-      <Information {template} />
-      <TemplateForm bind:templateProps />
-      <Canvas>
-        <div bind:this={templateElement}><Component {...templateProps} /></div>
-      </Canvas>
-      <Export {templateElement} {templateName} {templateProps} />
+      <Information template={loadedTemplate} />
+      {#if template}
+        <TemplateForm bind:template />
+        <Canvas>
+          <div bind:this={templateElement}><Component {...template.props} /></div>
+        </Canvas>
+        <Export {templateElement} {templateName} templateProps={template.props} />
+      {/if}
     </div>
   {:catch error}
     <TemplateError templateName={data.templateName} {error} />
