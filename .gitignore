@@ -72,3 +72,4 @@ claude_todo.md
 .cursor/
 .aider*
 .github/copilot*
+.turbo/
