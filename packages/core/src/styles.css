@@ -1,0 +1,59 @@
+@import 'tailwindcss';
+
+/* Galley Core Styles */
+
+/* Template Canvas Styles */
+.galley-canvas {
+  @apply border border-gray-200 rounded-lg overflow-hidden bg-white;
+}
+
+.galley-template-container {
+  @apply relative;
+}
+
+/* Template Form Styles */
+.galley-form {
+  @apply space-y-4 p-4 bg-white rounded-lg border;
+}
+
+.galley-form-group {
+  @apply space-y-2;
+}
+
+.galley-form-label {
+  @apply text-sm font-medium text-gray-700;
+}
+
+/* Export Styles */
+.galley-export {
+  @apply flex gap-2 p-4;
+}
+
+.galley-export-button {
+  @apply px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors;
+}
+
+/* Template Image Styles */
+.galley-template-image {
+  @apply relative overflow-hidden;
+}
+
+.galley-image-controls {
+  @apply absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity;
+  @apply bg-black/20;
+}
+
+.galley-image-control-button {
+  @apply p-2 bg-white rounded shadow-lg hover:bg-gray-50 transition-colors;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .galley-form {
+    @apply p-2;
+  }
+  
+  .galley-export {
+    @apply flex-col p-2;
+  }
+}
