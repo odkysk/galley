@@ -25,7 +25,7 @@
   import TemplateImage from "$lib/components/ui/TemplateImage.svelte";
 
   let { title, description, image }: Props = $props();
-  
+
   // Type assertion to ensure image is ImageField
   const imageField = image as import("$lib/models/template.js").ImageField;
 </script>
@@ -38,8 +38,5 @@
     <h1>{title.value}</h1>
     <p>{description.value}</p>
   </div>
-  <TemplateImage
-    imageField={imageField}
-    class="flex-1 h-full rounded"
-  />
+  <TemplateImage {imageField} class="flex-1 h-full rounded" />
 </div>
