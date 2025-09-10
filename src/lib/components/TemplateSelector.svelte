@@ -20,7 +20,7 @@
 
 <div class="fixed bottom-3 left-3">
   <Select.Root onValueChange={handleValueChange} type="single">
-    <Select.Trigger class="w-fit">
+    <Select.Trigger class="bg-white">
       <StickyNote />
     </Select.Trigger>
     <Select.Content align="start">

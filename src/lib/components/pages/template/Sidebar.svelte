@@ -15,7 +15,7 @@
 </script>
 
 <div
-  class="bg-zinc-100 w-full p-3 border-l flex flex-col h-[100vh] overflow-y-scroll"
+  class="bg-neutral-100 w-full p-3 border-l flex flex-col h-[100vh] overflow-y-scroll"
 >
   <div class="flex-1"><TemplateForm bind:template /></div>
   <Export {templateElement} {templateName} templateFields={template.fields} />

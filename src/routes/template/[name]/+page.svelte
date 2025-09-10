@@ -25,11 +25,15 @@
 {:then loadedTemplate}
   {@const Component = loadedTemplate.component}
   {#if template}
-    <div class="flex h-full">
-      <main class="flex-1 min-w-0 overflow-scroll">
+    <div class="flex h-full max-h-dvh">
+      <main
+        class="flex-1 min-w-0 overflow-scroll flex flex-col p-3 gap-3 bg-neutral-300"
+      >
         <Information template={loadedTemplate} />
-        <div bind:this={templateElement}>
-          <Component {...template.fields} />
+        <div class="flex-1 items-center justify-center flex">
+          <div bind:this={templateElement}>
+            <Component {...template.fields} />
+          </div>
         </div>
       </main>
       <div class="w-[300px]">
