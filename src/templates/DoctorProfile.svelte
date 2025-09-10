@@ -23,10 +23,6 @@
       mainImage: { type: "image", value: "" },
       subImage: { type: "image", value: "" },
     },
-    size: {
-      width: 900,
-      height: 600,
-    },
   });
 
   export type Props = typeof config.fields;
@@ -54,10 +50,7 @@
     subImage as import("$lib/models/template.js").ImageField;
 </script>
 
-<div
-  class="bg-neutral-100 p-6 flex gap-4"
-  style="width: {config.size!.width}px; height: {config.size!.height}px"
->
+<div class="bg-neutral-100 p-6 flex gap-4 w-[900px] h-[600px]">
   <!-- Profile Section (Left Column) -->
   <div class="flex-1 flex flex-col gap-3">
     <!-- Name Container -->

@@ -37,7 +37,6 @@ export async function getTemplate(name: string): Promise<Template | null> {
         name,
         fields: module.config?.fields ?? {},
         component: module.default,
-        size: module.config?.size ?? undefined,
       };
     }
     return template;

@@ -23,10 +23,6 @@ type ConfigToField<T extends TemplateFieldConfig> =
 // Template config with optional field values
 export interface TemplateConfig<T extends Record<string, TemplateFieldConfig> = Record<string, TemplateFieldConfig>> {
   fields: T;
-  size: {
-    width: number;
-    height: number;
-  };
 }
 
 export function createTemplateModule<T extends Record<string, TemplateFieldConfig>>(
@@ -35,10 +31,6 @@ export function createTemplateModule<T extends Record<string, TemplateFieldConfi
   config: {
     fields: {
       [K in keyof T]: ConfigToField<T[K]>;
-    };
-    size: {
-      width: number;
-      height: number;
     };
   };
   Props: {
@@ -74,7 +66,6 @@ export function createTemplateModule<T extends Record<string, TemplateFieldConfi
   return {
     config: {
       fields: processedFields,
-      size: config.size,
     },
     Props: processedFields,
   };

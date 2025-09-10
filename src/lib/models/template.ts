@@ -40,10 +40,6 @@ export interface Template {
   name: string;
   component: Component;
   fields: TemplateFields;
-  size?: {
-    width: number;
-    height: number;
-  };
 }
 
 // Template Svelte module interface
@@ -51,9 +47,5 @@ export interface TemplateSvelteModule {
   default: Component;
   config: {
     fields: Record<string, TemplateField>;
-    size?: {
-      width: number;
-      height: number;
-    };
   };
 }

@@ -11,10 +11,6 @@
       },
       image: { type: "image" },
     },
-    size: {
-      width: 400,
-      height: 200,
-    },
   });
 </script>
 
@@ -24,10 +20,7 @@
   let { title, description, image }: typeof Props = $props();
 </script>
 
-<div
-  class="bg-gray-300 p-4 flex"
-  style="width: {config.size!.width}px; height: {config.size!.height}px"
->
+<div class="bg-gray-300 p-4 flex w-[480px] h-[360px]">
   <div class="flex-1">
     <h1>{title.value}</h1>
     <p class="w-full whitespace-pre-line">{description.value}</p>

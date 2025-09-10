@@ -7,10 +7,6 @@
       email: { type: "text", value: "user@example.com" },
       image: { type: "image", value: "" },
     },
-    size: {
-      width: 400,
-      height: 300,
-    },
   });
 
   export { config };
@@ -21,10 +17,7 @@
   let { name, email, image }: ProfileProps = $props();
 </script>
 
-<div
-  class="bg-white p-4 flex flex-col items-center"
-  style="width: {config.size!.width}px; height: {config.size!.height}px"
->
+<div class="bg-white p-4 flex flex-col items-center">
   {#if image.value}
     <img
       src={image.value}
