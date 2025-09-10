@@ -41,6 +41,9 @@ export function createTemplateModule<T extends Record<string, TemplateFieldConfi
       height: number;
     };
   };
+  Props: {
+    [K in keyof T]: ConfigToField<T[K]>;
+  };
 } {
   // Auto-initialize values and properties for all field types
   const processedFields = {} as {
@@ -73,5 +76,6 @@ export function createTemplateModule<T extends Record<string, TemplateFieldConfi
       fields: processedFields,
       size: config.size,
     },
+    Props: processedFields,
   };
 }

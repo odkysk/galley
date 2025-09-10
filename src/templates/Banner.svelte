@@ -1,7 +1,7 @@
 <script module>
   import { createTemplateModule } from "../lib/utils/createTemplateModule.js";
 
-  export const { config } = createTemplateModule({
+  export const { config, Props } = createTemplateModule({
     fields: {
       title: { type: "text", maxLength: 50 },
       description: {
@@ -21,7 +21,7 @@
 <script lang="ts">
   import TemplateImage from "$lib/components/ui/TemplateImage.svelte";
 
-  let { title, description, image }: typeof config.fields = $props();
+  let { title, description, image }: typeof Props = $props();
 </script>
 
 <div
