@@ -29,13 +29,8 @@ export type ImageField = {
   _usedByTemplateImage?: boolean;
 };
 
-export type EmailField = {
-  type: "email";
-  value: string;
-};
-
 // Union of all template field types
-export type TemplateField = TextField | TextareaField | ImageField | EmailField;
+export type TemplateField = TextField | TextareaField | ImageField;
 
 // Template fields record
 export type TemplateFields = Record<string, TemplateField>;
