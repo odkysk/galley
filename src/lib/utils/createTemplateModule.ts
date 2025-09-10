@@ -6,16 +6,16 @@ import type {
   ImageField,
 } from "../models/template.js";
 
-// Input field types with optional values
-type TextFieldInput = Omit<TextField, 'value'> & { value?: string };
-type TextareaFieldInput = Omit<TextareaField, 'value'> & { value?: string };
-type ImageFieldInput = Omit<ImageField, 'value'> & { value?: string };
+// Config field types with optional values for template definition
+type TextFieldConfig = Omit<TextField, 'value'> & { value?: string };
+type TextareaFieldConfig = Omit<TextareaField, 'value'> & { value?: string };
+type ImageFieldConfig = Omit<ImageField, 'value'> & { value?: string };
 
-type TemplateFieldInput = TextFieldInput | TextareaFieldInput | ImageFieldInput;
+type TemplateFieldConfig = TextFieldConfig | TextareaFieldConfig | ImageFieldConfig;
 
-// Simple template config with optional values
+// Template config with optional field values
 export interface TemplateConfig {
-  fields: Record<string, TemplateFieldInput>;
+  fields: Record<string, TemplateFieldConfig>;
   size: {
     width: number;
     height: number;
