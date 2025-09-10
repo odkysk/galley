@@ -55,14 +55,14 @@
 </script>
 
 <div
-  class="bg-gray-100 p-6 flex gap-6"
+  class="bg-neutral-100 p-6 flex gap-4"
   style="width: {config.size!.width}px; height: {config.size!.height}px"
 >
   <!-- Profile Section (Left Column) -->
-  <div class="flex-1 flex flex-col gap-2.5">
+  <div class="flex-1 flex flex-col gap-3">
     <!-- Name Container -->
     <div class="flex flex-col gap-2.5">
-      <h1 class="color-gray-800 text-headline">
+      <h1 class="color-neutral-800 text-headline">
         {name.value}
       </h1>
     </div>
@@ -70,24 +70,24 @@
     <!-- Details Container -->
     <div class="flex flex-col flex-1">
       <div class="flex gap-2.5 items-center text-body">
-        <span class="text-gray-500">生年月日</span>
-        <span class="text-gray-900">{birthdate.value}</span>
+        <span class="text-neutral-500 w-16">生年月日</span>
+        <span class="text-neutral-900">{birthdate.value}</span>
       </div>
       <div class="flex gap-2.5 items-center text-body">
-        <span class="text-gray-500">出身地</span>
-        <span class="text-gray-900">{hometown.value}</span>
+        <span class="text-neutral-500 w-16">出身地</span>
+        <span class="text-neutral-900">{hometown.value}</span>
       </div>
       <div class="flex gap-2.5 items-center text-body">
-        <span class="text-gray-500">専門領域</span>
-        <span class="text-gray-900">{specialty.value}</span>
+        <span class="text-neutral-500 w-16">専門領域</span>
+        <span class="text-neutral-900">{specialty.value}</span>
       </div>
     </div>
 
     <!-- Health Section -->
     <div class="flex flex-col gap-2.5">
       <div class="flex-1 flex flex-col text-body">
-        <div class="text-gray-500">健康において大事にしてること</div>
-        <div class="text-gray-900 flex-1 whitespace-pre-line">
+        <div class="text-neutral-500">健康において大事にしてること</div>
+        <div class="text-neutral-900 flex-1 whitespace-pre-line">
           {healthValues.value}
         </div>
       </div>
@@ -114,11 +114,11 @@
 
   <!-- Personal Story Section (Right Column) -->
   <div class="flex-1 flex flex-col text-body">
-    <div class="text-gray-500">パーソナルドクターになったきっかけ</div>
-    <div class="flex-1 text-gray-900 whitespace-pre-line">
+    <div class="text-neutral-500">パーソナルドクターになったきっかけ</div>
+    <div class="flex-1 text-neutral-900 whitespace-pre-line">
       {motivation.value}
     </div>
-    <div class="text-gray-500">趣味</div>
-    <div class="text-gray-900">{hobbies.value}</div>
+    <div class="text-neutral-500">趣味</div>
+    <div class="text-neutral-900">{hobbies.value}</div>
   </div>
 </div>
