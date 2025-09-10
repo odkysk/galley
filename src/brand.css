@@ -55,4 +55,51 @@
   --leading-caption: 20px;
   --text-caption2: 9px;
   --leading-caption2: 12px;
+  
+  /* Neutral Palette */
+  --color-white: #ffffff;
+  --color-neutral-100: #f5f5f5;
+  --color-neutral-200: #eeeeee;
+  --color-neutral-300: #cecece;
+  --color-neutral-400: #aeaeae;
+  --color-neutral-500: #8f8f8f;
+  --color-neutral-600: #717171;
+  --color-neutral-700: #555555;
+  --color-neutral-800: #3a3a3a;
+  --color-neutral-900: #222222;
+  
+  /* Accent Palette */
+  --color-accent-100: #e2f0ff;
+  --color-accent-300: #89c3ff;
+  --color-accent-500: #0092f9;
+  --color-accent-700: #0065b0;
+  --color-accent-900: #003c6b;
+  
+  /* Healthy Palette */
+  --color-healthy-100: #c5ffd8;
+  --color-healthy-300: #4df097;
+  --color-healthy-500: #00bd6c;
+  --color-healthy-700: #00884d;
+  --color-healthy-900: #00572f;
+  
+  /* Caution Palette */
+  --color-caution-100: #ffebd5;
+  --color-caution-300: #ffc075;
+  --color-caution-500: #ee9800;
+  --color-caution-700: #b17000;
+  --color-caution-900: #774a00;
+  
+  /* Danger Palette */
+  --color-danger-100: #ffe9e3;
+  --color-danger-300: #ffa28a;
+  --color-danger-500: #fb4200;
+  --color-danger-700: #b12b00;
+  --color-danger-900: #6c1700;
+  
+  /* Disease Palette */
+  --color-disease-100: #eeecff;
+  --color-disease-300: #ad9eff;
+  --color-disease-500: #7a34ff;
+  --color-disease-700: #5600c1;
+  --color-disease-900: #34007a;
 }
