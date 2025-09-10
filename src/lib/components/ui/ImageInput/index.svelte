@@ -11,12 +11,12 @@
     value = $bindable(),
     frame = $bindable(),
     blendMode = $bindable(),
-    imageField,
+    field,
   }: {
     value?: string | null;
     frame?: ImageFrame;
     blendMode?: string;
-    imageField?: import("$lib/models/template.js").ImageField;
+    field?: import("$lib/models/template.js").ImageField;
   } = $props();
 
   let fileInput: HTMLInputElement;
@@ -59,8 +59,7 @@
       <FileImage />
     </Button>
   {/if}
-  <p>{imageField?.frame?.zoom ?? 1}</p>
-  {#if imageField?._usedByTemplateImage}
+  {#if field?._usedByTemplateImage}
     <Popover.Root>
       <Popover.Trigger disabled={!value}>
         <Button variant="outline" size="icon" disabled={!value}>

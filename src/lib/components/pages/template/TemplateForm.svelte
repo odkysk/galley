@@ -22,7 +22,7 @@
           bind:value={field.value}
           bind:frame={field.frame}
           bind:blendMode={field.blendMode}
-          imageField={field}
+          field={field}
         />
       {:else if field.type === "text"}
         <Input

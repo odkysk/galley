@@ -91,14 +91,14 @@
   <div class="flex-1 flex flex-col gap-6">
     <div class="flex-1 rounded-xl overflow-hidden">
       <TemplateImage
-        imageField={mainImageField}
+        field={mainImageField}
         class="w-full h-full object-cover"
       />
     </div>
     {#if subImage.value}
       <div class="h-64 rounded-xl overflow-hidden">
         <TemplateImage
-          imageField={subImageField}
+          field={subImageField}
           class="w-full h-full object-cover"
         />
       </div>
