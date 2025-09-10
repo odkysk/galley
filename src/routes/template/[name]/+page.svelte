@@ -1,10 +1,8 @@
 <script lang="ts">
-  import Canvas from "$lib/components/pages/template/Canvas.svelte";
-  import Export from "$lib/components/pages/template/Export.svelte";
   import Information from "$lib/components/pages/template/Information.svelte";
+  import Sidebar from "$lib/components/pages/template/Sidebar.svelte";
   import Skeleton from "$lib/components/pages/template/Skeleton.svelte";
   import TemplateError from "$lib/components/pages/template/TemplateError.svelte";
-  import TemplateForm from "$lib/components/pages/template/TemplateForm.svelte";
   import type { Template } from "$lib/models/template";
   import { getTemplate } from "$lib/utils/templates";
 
@@ -22,30 +20,23 @@
   };
 </script>
 
-<div class="flex-1 max-w-full">
-  {#await loadTemplate()}
-    <Skeleton />
-  {:then loadedTemplate}
-    {@const Component = loadedTemplate.component}
-    <div
-      class="flex min-h-dvh flex-1 flex-col gap-3 p-3 items-start max-w-full"
-    >
-      <Information template={loadedTemplate} />
-      {#if template}
-        <TemplateForm bind:template />
-        <Canvas>
-          <div bind:this={templateElement}>
-            <Component {...template.fields} />
-          </div>
-        </Canvas>
-        <Export
-          {templateElement}
-          {templateName}
-          templateFields={template.fields}
-        />
-      {/if}
+{#await loadTemplate()}
+  <Skeleton />
+{:then loadedTemplate}
+  {@const Component = loadedTemplate.component}
+  {#if template}
+    <div class="flex h-full">
+      <main class="flex-1 min-w-0 overflow-scroll">
+        <Information template={loadedTemplate} />
+        <div bind:this={templateElement}>
+          <Component {...template.fields} />
+        </div>
+      </main>
+      <div class="w-[300px]">
+        <Sidebar {template} {templateElement} {templateName} />
+      </div>
     </div>
-  {:catch error}
-    <TemplateError templateName={data.templateName} {error} />
-  {/await}
-</div>
+  {/if}
+{:catch error}
+  <TemplateError templateName={data.templateName} {error} />
+{/await}

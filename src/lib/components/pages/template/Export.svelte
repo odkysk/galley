@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Button } from "$lib/components/ui/button";
-  import { exportAsImage } from "$lib/utils/export";
   import type { TemplateFields } from "$lib/models/template";
+  import { exportAsImage } from "$lib/utils/export";
   import Download from "@lucide/svelte/icons/download";
 
   interface Props {
@@ -28,7 +28,7 @@
 </script>
 
 <div class="flex gap-3 justify-end w-full">
-  <Button onclick={handleExport}>
+  <Button onclick={handleExport} class="w-full">
     <Download /> 画像を保存
   </Button>
 </div>

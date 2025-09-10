@@ -12,7 +12,7 @@
   } = $props();
 </script>
 
-<div class="flex gap-3 flex-wrap">
+<div class="flex flex-col gap-3">
   {#each Object.keys(template.fields) as key}
     {@const field = template.fields[key]}
     <div class="flex flex-col gap-1">
@@ -22,18 +22,18 @@
           bind:value={field.value}
           bind:frame={field.frame}
           bind:blendMode={field.blendMode}
-          field={field}
+          {field}
         />
       {:else if field.type === "text"}
         <Input
-          class="w-60"
+          class="w-full"
           id={key}
           bind:value={field.value}
           maxlength={field.maxLength}
         />
       {:else if field.type === "textarea"}
         <Textarea
-          class="resize-none w-60"
+          class="resize-none w-full"
           id={key}
           bind:value={field.value}
           rows={field.rows}

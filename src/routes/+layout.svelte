@@ -1,13 +1,10 @@
 <script lang="ts">
-  import AppSidebar from "$lib/components/AppSidebar.svelte";
-  import * as Sidebar from "$lib/components/ui/sidebar/index";
+  import TemplateSelector from "$lib/components/TemplateSelector.svelte";
   import "../app.css";
   let { children } = $props();
 </script>
 
-<Sidebar.Provider>
-  <AppSidebar />
-  <main class="w-full">
-    {@render children?.()}
-  </main>
-</Sidebar.Provider>
+<TemplateSelector />
+<main class="w-full">
+  {@render children?.()}
+</main>

@@ -177,7 +177,6 @@
       <Button
         variant="outline"
         size="icon"
-        onclick={() => adjustY(1)}
         onmousedown={() =>
           startHold(
             () => adjustY(1),
@@ -197,7 +196,7 @@
     <Label class="text-xs w-12 text-gray-500">Blend</Label>
     <Select.Root type="single" bind:value={blendMode}>
       <Select.Trigger class="flex-1">
-        {blendModes.find(mode => mode.value === blendMode)?.label || "Normal"}
+        {blendModes.find((mode) => mode.value === blendMode)?.label || "Normal"}
       </Select.Trigger>
       <Select.Content>
         {#each blendModes as mode}
