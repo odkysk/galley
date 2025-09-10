@@ -3,7 +3,7 @@
 
   export const { config } = createTemplateModule({
     fields: {
-      name: { type: "text", value: "医師名", maxLength: 20 },
+      name: { type: "text", value: "氏名", maxLength: 20 },
       birthdate: { type: "text", value: "1990年1月1日", maxLength: 30 },
       hometown: { type: "text", value: "東京都", maxLength: 20 },
       specialty: { type: "text", value: "内科", maxLength: 50 },
@@ -61,26 +61,28 @@
     </div>
 
     <!-- Details Container -->
-    <div class="flex flex-col flex-1">
-      <div class="flex gap-2.5 items-center text-body">
-        <span class="text-neutral-500 w-16">生年月日</span>
-        <span class="text-neutral-900">{birthdate.value}</span>
+    <div class="flex flex-col flex-1 gap-1">
+      <div class="flex gap-2.5 items-start text-body">
+        <span class="text-neutral-500 text-body w-20">生年月日</span>
+        <span class="text-neutral-900 flex-1">{birthdate.value}</span>
       </div>
-      <div class="flex gap-2.5 items-center text-body">
-        <span class="text-neutral-500 w-16">出身地</span>
-        <span class="text-neutral-900">{hometown.value}</span>
+      <div class="flex gap-2.5 items-start text-body">
+        <span class="text-neutral-500 text-body w-20">出身地</span>
+        <span class="text-neutral-900 flex-1">{hometown.value}</span>
       </div>
-      <div class="flex gap-2.5 items-center text-body">
-        <span class="text-neutral-500 w-16">専門領域</span>
-        <span class="text-neutral-900">{specialty.value}</span>
+      <div class="flex gap-2.5 items-start text-body">
+        <span class="text-neutral-500 text-body w-20">専門領域</span>
+        <span class="text-neutral-900 flex-1">{specialty.value}</span>
       </div>
     </div>
 
     <!-- Health Section -->
     <div class="flex flex-col gap-2.5">
       <div class="flex-1 flex flex-col text-body">
-        <div class="text-neutral-500">健康において大事にしてること</div>
-        <div class="text-neutral-900 flex-1 whitespace-pre-line">
+        <div class="text-neutral-500 text-body">
+          健康において大事にしてること
+        </div>
+        <div class="text-neutral-900 flex-1 whitespace-pre-line text-body">
           {healthValues.value}
         </div>
       </div>
@@ -106,12 +108,14 @@
   </div>
 
   <!-- Personal Story Section (Right Column) -->
-  <div class="flex-1 flex flex-col text-body">
-    <div class="text-neutral-500">パーソナルドクターになったきっかけ</div>
-    <div class="flex-1 text-neutral-900 whitespace-pre-line">
+  <div class="flex-1 flex flex-col">
+    <div class="text-neutral-500 text-body">
+      パーソナルドクターになったきっかけ
+    </div>
+    <div class="flex-1 text-neutral-900 whitespace-pre-line text-body">
       {motivation.value}
     </div>
-    <div class="text-neutral-500">趣味</div>
-    <div class="text-neutral-900">{hobbies.value}</div>
+    <div class="text-neutral-500 text-body">趣味</div>
+    <div class="text-neutral-900 text-body">{hobbies.value}</div>
   </div>
 </div>
