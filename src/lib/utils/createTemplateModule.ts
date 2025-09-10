@@ -13,39 +13,58 @@ type ImageFieldConfig = Omit<ImageField, 'value'> & { value?: string };
 
 type TemplateFieldConfig = TextFieldConfig | TextareaFieldConfig | ImageFieldConfig;
 
+// Type mapping from config to actual field types
+type ConfigToField<T extends TemplateFieldConfig> = 
+  T extends { type: 'text' } ? TextField :
+  T extends { type: 'textarea' } ? TextareaField :
+  T extends { type: 'image' } ? ImageField :
+  never;
+
 // Template config with optional field values
-export interface TemplateConfig {
-  fields: Record<string, TemplateFieldConfig>;
+export interface TemplateConfig<T extends Record<string, TemplateFieldConfig> = Record<string, TemplateFieldConfig>> {
+  fields: T;
   size: {
     width: number;
     height: number;
   };
 }
 
-export function createTemplateModule(
-  config: TemplateConfig
-): Pick<TemplateSvelteModule, "config"> {
+export function createTemplateModule<T extends Record<string, TemplateFieldConfig>>(
+  config: TemplateConfig<T>
+): {
+  config: {
+    fields: {
+      [K in keyof T]: ConfigToField<T[K]>;
+    };
+    size: {
+      width: number;
+      height: number;
+    };
+  };
+} {
   // Auto-initialize values and properties for all field types
-  const processedFields: Record<string, TemplateField> = {};
+  const processedFields = {} as {
+    [K in keyof T]: ConfigToField<T[K]>;
+  };
 
   for (const [key, field] of Object.entries(config.fields)) {
     if (field.type === "image") {
-      processedFields[key] = {
+      processedFields[key as keyof T] = {
         ...field,
         value: field.value || "",
         frame: field.frame || { zoom: 1, x: 0, y: 0 },
         blendMode: field.blendMode || "normal",
-      } as ImageField;
+      } as ConfigToField<T[keyof T]>;
     } else if (field.type === "text") {
-      processedFields[key] = {
+      processedFields[key as keyof T] = {
         ...field,
         value: field.value || "",
-      } as TextField;
+      } as ConfigToField<T[keyof T]>;
     } else if (field.type === "textarea") {
-      processedFields[key] = {
+      processedFields[key as keyof T] = {
         ...field,
         value: field.value || "",
-      } as TextareaField;
+      } as ConfigToField<T[keyof T]>;
     }
   }
 

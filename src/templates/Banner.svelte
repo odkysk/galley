@@ -32,5 +32,5 @@
     <h1>{title.value}</h1>
     <p class="w-full whitespace-pre-line">{description.value}</p>
   </div>
-  <TemplateImage imageField={image as import('$lib/models/template.js').ImageField} class="flex-1 h-full rounded" />
+  <TemplateImage imageField={image} class="flex-1 h-full rounded" />
 </div>
