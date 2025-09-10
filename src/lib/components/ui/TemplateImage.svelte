@@ -23,7 +23,7 @@
       src={imageField.value}
       alt=""
       class="w-full h-full object-cover"
-      style="transform: scale({imageField.frame?.zoom || 1}) translate({imageField.frame?.x || 0}px, {imageField.frame?.y || 0}px); transform-origin: center center; mix-blend-mode: {imageField.blendMode || 'normal'};"
+      style="transform: scale({imageField.frame?.zoom || 1}); transform-origin: center center; object-position: {imageField.frame?.x || 0}px {imageField.frame?.y || 0}px; mix-blend-mode: {imageField.blendMode || 'normal'};"
     />
   {/if}
 </div>
