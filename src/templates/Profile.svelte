@@ -4,13 +4,13 @@
   const { config } = createTemplateModule({
     fields: {
       name: { type: "text", value: "Default Name" },
-      email: { type: "email", value: "user@example.com" },
+      email: { type: "text", value: "user@example.com" },
       image: { type: "image", value: "" },
     },
     size: {
       width: 400,
       height: 300,
-    }
+    },
   });
 
   export { config };

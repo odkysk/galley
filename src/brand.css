@@ -1,0 +1,58 @@
+@font-face {
+  font-family: "Tazugane Gothic";
+  src: url("/src/assets/fonts/Tazugane Gothic StdN Medium.otf")
+    format("opentype");
+  font-weight: normal;
+}
+
+* {
+  font-family: "Tazugane Gothic", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+@layer base {
+  .text-headline {
+    font-size: var(--text-headline);
+    line-height: var(--leading-headline);
+  }
+  .text-headline2 {
+    font-size: var(--text-headline2);
+    line-height: var(--leading-headline2);
+  }
+  .text-headline3 {
+    font-size: var(--text-headline3);
+    line-height: var(--leading-headline3);
+  }
+  .text-body {
+    font-size: var(--text-body);
+    line-height: var(--leading-body);
+  }
+  .text-body2 {
+    font-size: var(--text-body2);
+    line-height: var(--leading-body2);
+  }
+  .text-caption {
+    font-size: var(--text-caption);
+    line-height: var(--leading-caption);
+  }
+  .text-caption2 {
+    font-size: var(--text-caption2);
+    line-height: var(--leading-caption2);
+  }
+}
+@theme {
+  --color-gray-800: #3a3a3a;
+  --text-headline: 32px;
+  --leading-headline: 36px;
+  --text-headline2: 24px;
+  --leading-headline2: 32px;
+  --text-headline3: 20px;
+  --leading-headline3: 24px;
+  --text-body: 16px;
+  --leading-body: 28px;
+  --text-body2: 14px;
+  --leading-body2: 24px;
+  --text-caption: 12px;
+  --leading-caption: 20px;
+  --text-caption2: 9px;
+  --leading-caption2: 12px;
+}

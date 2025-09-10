@@ -2,6 +2,8 @@
 
 @import "tw-animate-css";
 
+@import "./brand.css";
+
 @custom-variant dark (&:is(.dark *));
 
 :root {
@@ -114,7 +116,6 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
-    white-space: pre-line;
   }
   body {
     @apply bg-background text-foreground;

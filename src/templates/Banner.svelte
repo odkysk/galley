@@ -8,7 +8,7 @@
         type: "textarea",
         value: "Default Description",
         maxLength: 200,
-        rows: 4,
+        rows: 12,
       },
       image: { type: "image", value: "" },
     },
@@ -36,7 +36,7 @@
 >
   <div class="flex-1">
     <h1>{title.value}</h1>
-    <p>{description.value}</p>
+    <p class="w-full whitespace-pre-line">{description.value}</p>
   </div>
   <TemplateImage {imageField} class="flex-1 h-full rounded" />
 </div>
