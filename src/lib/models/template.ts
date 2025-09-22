@@ -26,7 +26,7 @@ export type ImageField = {
   value: string;
   frame?: ImageFrame;
   blendMode?: string;
-  _usedByTemplateImage?: boolean;
+  _usedByFramedImage?: boolean;
 };
 
 // Union of all template field types

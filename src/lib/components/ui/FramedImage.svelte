@@ -10,9 +10,9 @@
     class?: string;
   } & HTMLAttributes<HTMLDivElement> = $props();
 
-  // Mark this field as being used by TemplateImage immediately
+  // Mark this field as being used by FramedImage immediately
   if (field) {
-    field._usedByTemplateImage = true;
+    field._usedByFramedImage = true;
   }
 </script>
 

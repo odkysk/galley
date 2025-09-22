@@ -59,7 +59,7 @@
       <FileImage />
     </Button>
   {/if}
-  {#if field?._usedByTemplateImage}
+  {#if field?._usedByFramedImage}
     <Popover.Root>
       <Popover.Trigger disabled={!value}>
         <Button variant="outline" size="icon" disabled={!value}>

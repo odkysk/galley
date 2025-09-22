@@ -29,7 +29,7 @@
 </script>
 
 <script lang="ts">
-  import TemplateImage from "$lib/components/ui/TemplateImage.svelte";
+  import FramedImage from "$lib/components/ui/FramedImage.svelte";
 
   let {
     name,
@@ -92,14 +92,14 @@
   <!-- Images Section (Center Column) -->
   <div class="flex-1 flex flex-col gap-6">
     <div class="flex-1 rounded-xl overflow-hidden">
-      <TemplateImage
+      <FramedImage
         field={mainImageField}
         class="w-full h-full object-cover"
       />
     </div>
     {#if subImage.value}
       <div class="h-64 rounded-xl overflow-hidden">
-        <TemplateImage
+        <FramedImage
           field={subImageField}
           class="w-full h-full object-cover"
         />
