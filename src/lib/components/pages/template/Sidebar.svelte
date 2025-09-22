@@ -4,7 +4,7 @@
   import TemplateForm from "./TemplateForm.svelte";
 
   let {
-    template,
+    template = $bindable(),
     templateElement,
     templateName,
   }: {

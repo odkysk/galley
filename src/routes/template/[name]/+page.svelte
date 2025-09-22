@@ -37,7 +37,7 @@
         </div>
       </main>
       <div class="w-[300px]">
-        <Sidebar {template} {templateElement} {templateName} />
+        <Sidebar bind:template {templateElement} {templateName} />
       </div>
     </div>
   {/if}
