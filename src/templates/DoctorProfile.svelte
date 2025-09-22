@@ -55,7 +55,7 @@
   <div class="flex-1 flex flex-col gap-3">
     <!-- Name Container -->
     <div class="flex flex-col gap-2.5">
-      <h1 class="color-neutral-800 text-headline">
+      <h1 class="text-neutral-800 text-headline">
         {name.value}
       </h1>
     </div>
