@@ -64,15 +64,15 @@
     <div class="flex flex-col flex-1 gap-1">
       <div class="flex gap-2.5 items-start text-body">
         <span class="text-neutral-500 text-body w-20">生年月日</span>
-        <span class="text-neutral-900 flex-1">{birthdate.value}</span>
+        <span class="text-neutral-800 flex-1">{birthdate.value}</span>
       </div>
       <div class="flex gap-2.5 items-start text-body">
         <span class="text-neutral-500 text-body w-20">出身地</span>
-        <span class="text-neutral-900 flex-1">{hometown.value}</span>
+        <span class="text-neutral-800 flex-1">{hometown.value}</span>
       </div>
       <div class="flex gap-2.5 items-start text-body">
         <span class="text-neutral-500 text-body w-20">専門領域</span>
-        <span class="text-neutral-900 flex-1">{specialty.value}</span>
+        <span class="text-neutral-800 flex-1">{specialty.value}</span>
       </div>
     </div>
 
@@ -82,7 +82,7 @@
         <div class="text-neutral-500 text-body">
           健康において大事にしてること
         </div>
-        <div class="text-neutral-900 flex-1 whitespace-pre-line text-body">
+        <div class="text-neutral-800 flex-1 whitespace-pre-line text-body">
           {healthValues.value}
         </div>
       </div>
@@ -92,17 +92,11 @@
   <!-- Images Section (Center Column) -->
   <div class="flex-1 flex flex-col gap-6">
     <div class="flex-1 rounded-xl overflow-hidden">
-      <FramedImage
-        field={mainImageField}
-        class="w-full h-full object-cover"
-      />
+      <FramedImage field={mainImageField} class="w-full h-full object-cover" />
     </div>
     {#if subImage.value}
       <div class="h-64 rounded-xl overflow-hidden">
-        <FramedImage
-          field={subImageField}
-          class="w-full h-full object-cover"
-        />
+        <FramedImage field={subImageField} class="w-full h-full object-cover" />
       </div>
     {/if}
   </div>
@@ -112,10 +106,10 @@
     <div class="text-neutral-500 text-body">
       パーソナルドクターになったきっかけ
     </div>
-    <div class="flex-1 text-neutral-900 whitespace-pre-line text-body">
+    <div class="flex-1 text-neutral-800 whitespace-pre-line text-body">
       {motivation.value}
     </div>
     <div class="text-neutral-500 text-body">趣味</div>
-    <div class="text-neutral-900 text-body">{hobbies.value}</div>
+    <div class="text-neutral-800 text-body">{hobbies.value}</div>
   </div>
 </div>
