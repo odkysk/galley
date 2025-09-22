@@ -10,6 +10,7 @@
   }: {
     template: Template;
   } = $props();
+  $inspect(template);
 </script>
 
 <div class="flex flex-col gap-3">

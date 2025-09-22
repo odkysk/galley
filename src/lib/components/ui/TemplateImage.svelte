@@ -1,6 +1,5 @@
 <script lang="ts">
   import type { HTMLAttributes } from "svelte/elements";
-  import type { ImageFrame } from "$lib/models/template.js";
 
   let {
     field,
@@ -17,13 +16,16 @@
   }
 </script>
 
-<div class="overflow-hidden {className}" {...rest}>
+<div class="relative overflow-hidden bg-red-500 {className}" {...rest}>
   {#if field.value}
     <img
       src={field.value}
       alt=""
-      class="w-full h-full object-cover"
-      style="transform: scale({field.frame?.zoom || 1}); transform-origin: center center; object-position: {field.frame?.x || 0}px {field.frame?.y || 0}px; mix-blend-mode: {field.blendMode || 'normal'};"
+      class="absolute w-full h-full object-contain"
+      style="transform: translate({field.frame?.x || 0}px, {field.frame?.y ||
+        0}px) scale({field.frame?.zoom ||
+        1}); transform-origin: center center; mix-blend-mode: {field.blendMode ||
+        'normal'};"
     />
   {/if}
 </div>
