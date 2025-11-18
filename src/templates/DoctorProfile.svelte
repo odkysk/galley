@@ -50,39 +50,39 @@
     subImage as import("$lib/models/template.js").ImageField;
 </script>
 
-<div class="bg-neutral-100 p-6 flex gap-4 w-[900px] h-[600px]">
+<div class="container">
   <!-- Profile Section (Left Column) -->
-  <div class="flex-1 flex flex-col gap-3">
+  <div class="left-column">
     <!-- Name Container -->
-    <div class="flex flex-col gap-2.5">
-      <h1 class="text-neutral-800 text-headline">
+    <div class="name-container">
+      <h1 class="name">
         {name.value}
       </h1>
     </div>
 
     <!-- Details Container -->
-    <div class="flex flex-col flex-1 gap-1">
-      <div class="flex gap-2.5 items-start text-body">
-        <span class="text-neutral-500 text-body w-20">生年月日</span>
-        <span class="text-neutral-800 flex-1">{birthdate.value}</span>
+    <div class="details-container">
+      <div class="detail-row">
+        <span class="detail-label">生年月日</span>
+        <span class="detail-value">{birthdate.value}</span>
       </div>
-      <div class="flex gap-2.5 items-start text-body">
-        <span class="text-neutral-500 text-body w-20">出身地</span>
-        <span class="text-neutral-800 flex-1">{hometown.value}</span>
+      <div class="detail-row">
+        <span class="detail-label">出身地</span>
+        <span class="detail-value">{hometown.value}</span>
       </div>
-      <div class="flex gap-2.5 items-start text-body">
-        <span class="text-neutral-500 text-body w-20">専門領域</span>
-        <span class="text-neutral-800 flex-1">{specialty.value}</span>
+      <div class="detail-row">
+        <span class="detail-label">専門領域</span>
+        <span class="detail-value">{specialty.value}</span>
       </div>
     </div>
 
     <!-- Health Section -->
-    <div class="flex flex-col gap-2.5">
-      <div class="flex-1 flex flex-col text-body">
-        <div class="text-neutral-500 text-body">
+    <div class="health-section">
+      <div class="health-content">
+        <div class="health-label">
           健康において大事にしてること
         </div>
-        <div class="text-neutral-800 flex-1 whitespace-pre-line text-body">
+        <div class="health-value">
           {healthValues.value}
         </div>
       </div>
@@ -90,26 +90,171 @@
   </div>
 
   <!-- Images Section (Center Column) -->
-  <div class="flex-1 flex flex-col gap-6">
-    <div class="flex-1 rounded-xl overflow-hidden">
-      <FramedImage field={mainImageField} class="w-full h-full object-cover" />
+  <div class="images-column">
+    <div class="main-image-container">
+      <FramedImage field={mainImageField} class="image" />
     </div>
     {#if subImage.value}
-      <div class="h-64 rounded-xl overflow-hidden">
-        <FramedImage field={subImageField} class="w-full h-full object-cover" />
+      <div class="sub-image-container">
+        <FramedImage field={subImageField} class="image" />
       </div>
     {/if}
   </div>
 
   <!-- Personal Story Section (Right Column) -->
-  <div class="flex-1 flex flex-col">
-    <div class="text-neutral-500 text-body">
+  <div class="right-column">
+    <div class="motivation-label">
       パーソナルドクターになったきっかけ
     </div>
-    <div class="flex-1 text-neutral-800 whitespace-pre-line text-body">
+    <div class="motivation-value">
       {motivation.value}
     </div>
-    <div class="text-neutral-500 text-body">趣味</div>
-    <div class="text-neutral-800 text-body">{hobbies.value}</div>
+    <div class="hobbies-label">趣味</div>
+    <div class="hobbies-value">{hobbies.value}</div>
   </div>
 </div>
+
+<style>
+  .container {
+    background-color: #f5f5f5;
+    padding: 24px;
+    display: flex;
+    gap: 16px;
+    width: 900px;
+    height: 600px;
+  }
+
+  /* Left Column */
+  .left-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .name-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .name {
+    color: #3a3a3a;
+    font-size: 32px;
+    line-height: 36px;
+  }
+
+  .details-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 4px;
+  }
+
+  .detail-row {
+    display: flex;
+    gap: 10px;
+    align-items: start;
+    font-size: 16px;
+    line-height: 28px;
+  }
+
+  .detail-label {
+    color: #8f8f8f;
+    font-size: 16px;
+    line-height: 28px;
+    width: 80px;
+  }
+
+  .detail-value {
+    color: #3a3a3a;
+    flex: 1;
+  }
+
+  .health-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .health-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    line-height: 28px;
+  }
+
+  .health-label {
+    color: #8f8f8f;
+    font-size: 16px;
+    line-height: 28px;
+  }
+
+  .health-value {
+    color: #3a3a3a;
+    flex: 1;
+    white-space: pre-line;
+    font-size: 16px;
+    line-height: 28px;
+  }
+
+  /* Images Column */
+  .images-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .main-image-container {
+    flex: 1;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .sub-image-container {
+    height: 256px;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  :global(.image) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Right Column */
+  .right-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .motivation-label {
+    color: #8f8f8f;
+    font-size: 16px;
+    line-height: 28px;
+  }
+
+  .motivation-value {
+    flex: 1;
+    color: #3a3a3a;
+    white-space: pre-line;
+    font-size: 16px;
+    line-height: 28px;
+  }
+
+  .hobbies-label {
+    color: #8f8f8f;
+    font-size: 16px;
+    line-height: 28px;
+  }
+
+  .hobbies-value {
+    color: #3a3a3a;
+    font-size: 16px;
+    line-height: 28px;
+  }
+</style>
