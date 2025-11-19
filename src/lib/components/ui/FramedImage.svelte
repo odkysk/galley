@@ -23,9 +23,8 @@
       alt=""
       class="absolute w-full h-full object-cover"
       style="
-      transform: translate({field.frame?.x || 0}px, {field.frame?.y ||
-        0}px) scale({field.frame?.zoom || 1});
-         transform-origin: center center; mix-blend-mode: {field.blendMode ||
+        transform: scale({field.frame?.zoom || 1});
+        transform-origin: center center; mix-blend-mode: {field.blendMode ||
         'normal'};
         object-position: {field.frame?.x || 0}px {field.frame?.y || 0}px;
         "
