@@ -16,16 +16,19 @@
   }
 </script>
 
-<div class="relative overflow-hidden bg-red-500 {className}" {...rest}>
+<div class="relative overflow-hidden bg-red-200 {className}" {...rest}>
   {#if field.value}
     <img
       src={field.value}
       alt=""
-      class="absolute w-full h-full object-contain"
-      style="transform: translate({field.frame?.x || 0}px, {field.frame?.y ||
-        0}px) scale({field.frame?.zoom ||
-        1}); transform-origin: center center; mix-blend-mode: {field.blendMode ||
-        'normal'};"
+      class="absolute w-full h-full object-cover"
+      style="
+      transform: translate({field.frame?.x || 0}px, {field.frame?.y ||
+        0}px) scale({field.frame?.zoom || 1});
+         transform-origin: center center; mix-blend-mode: {field.blendMode ||
+        'normal'};
+        object-position: {field.frame?.x || 0}px {field.frame?.y || 0}px;
+        "
     />
   {/if}
 </div>
