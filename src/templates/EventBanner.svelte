@@ -46,7 +46,7 @@
           {description.value}
         </p>
       {/if}
-      <h1 class="title">{title.value}</h1>
+      <p class="title">{title.value}</p>
     </div>
   </ProgressiveBlur>
 </div>

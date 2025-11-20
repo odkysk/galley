@@ -55,9 +55,9 @@
   <div class="left-column">
     <!-- Name Container -->
     <div class="name-container">
-      <h1 class="name">
+      <p class="name">
         {name.value}
-      </h1>
+      </p>
     </div>
 
     <!-- Details Container -->
