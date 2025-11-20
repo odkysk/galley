@@ -79,9 +79,7 @@
     <!-- Health Section -->
     <div class="health-section">
       <div class="health-content">
-        <div class="health-label">
-          健康において大事にしてること
-        </div>
+        <div class="health-label">健康において大事にしてること</div>
         <div class="health-value">
           {healthValues.value}
         </div>
@@ -103,9 +101,7 @@
 
   <!-- Personal Story Section (Right Column) -->
   <div class="right-column">
-    <div class="motivation-label">
-      パーソナルドクターになったきっかけ
-    </div>
+    <div class="motivation-label">パーソナルドクターになったきっかけ</div>
     <div class="motivation-value">
       {motivation.value}
     </div>

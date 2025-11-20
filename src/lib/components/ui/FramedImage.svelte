@@ -16,7 +16,10 @@
   }
 </script>
 
-<div class="relative overflow-hidden bg-red-200 {className}" {...rest}>
+<div
+  class="relative overflow-hidden bg-red-200 w-full h-full {className}"
+  {...rest}
+>
   {#if field.value}
     <img
       src={field.value}
