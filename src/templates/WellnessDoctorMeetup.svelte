@@ -3,7 +3,7 @@
 
   export const { config } = createTemplateModule({
     fields: {
-      volume: { type: "text", value: "7", maxLength: 10 },
+      volume: { type: "text", value: "1", maxLength: 10 },
       description: {
         type: "textarea",
         value:
@@ -91,7 +91,7 @@
     </div>
 
     <div class="event-info">
-      <h1 class="event-title">Wellness Doctor Meetup</h1>
+      <p class="event-title">Wellness Doctor Meetup</p>
       <div class="event-details">
         <p class="event-date">{eventDate.value}</p>
         <div class="event-meta">
@@ -134,6 +134,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 120px;
     gap: 12px;
   }
 
@@ -148,7 +149,6 @@
   }
 
   .doctor-image {
-    flex: 1;
     width: 120px;
     height: 100px;
     border-radius: 12px;
@@ -234,7 +234,6 @@
     line-height: 36px;
     letter-spacing: -0.96px;
     white-space: nowrap;
-    margin: 0;
   }
 
   .event-details {
