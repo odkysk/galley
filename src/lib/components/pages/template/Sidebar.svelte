@@ -1,9 +1,9 @@
 <script lang="ts">
+  import { Button } from "$lib/components/ui/button";
   import type { Template } from "$lib/models/template";
+  import { clearTemplateFields } from "$lib/utils/templateStorage";
   import Export from "./Export.svelte";
   import TemplateForm from "./TemplateForm.svelte";
-  import { Button } from "$lib/components/ui/button";
-  import { clearTemplateFields } from "$lib/utils/templateStorage";
 
   let {
     template = $bindable(),
@@ -22,15 +22,13 @@
 </script>
 
 <div
-  class="bg-neutral-100 w-full p-3 border-l flex flex-col h-[100vh] overflow-y-scroll"
+  class="bg-neutral-100 w-full p-3 border-l flex flex-col h-screen overflow-y-scroll gap-3 justify-between"
 >
-  <div class="flex-1">
-    <TemplateForm bind:template />
-    <div class="mt-3">
-      <Button variant="outline" class="w-full" onclick={resetFields}>
-        フィールドをリセット
-      </Button>
-    </div>
+  <TemplateForm bind:template />
+  <div class="flex flex-col gap-3">
+    <Button variant="outline" onclick={resetFields}>
+      フィールドをリセット
+    </Button>
+    <Export {templateElement} {templateName} templateFields={template.fields} />
   </div>
-  <Export {templateElement} {templateName} templateFields={template.fields} />
 </div>
