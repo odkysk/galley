@@ -52,14 +52,6 @@
   class="relative overflow-hidden bg-red-200 w-full h-full {className}"
   {...rest}
 >
-  <div class="absolute inset-0 flex flex-col gap-1">
-    <p class="text-red-500 z-1 text-xs">
-      {frameWidth} / {frameHeight} = {frameRatio}
-    </p>
-    <p class="text-red-500 z-1 text-xs">
-      {imageWidth} / {imageHeight} = {imageRatio}
-    </p>
-  </div>
   {#if field.value}
     <img
       onload={handleImageLoad}
