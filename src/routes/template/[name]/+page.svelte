@@ -5,6 +5,10 @@
   import TemplateError from "$lib/components/pages/template/TemplateError.svelte";
   import type { Template } from "$lib/models/template";
   import { getTemplate } from "$lib/utils/templates";
+  import {
+    saveTemplateFields,
+    loadTemplateFields,
+  } from "$lib/utils/templateStorage";
 
   let { data } = $props();
   let templateName = $derived(data.templateName);
@@ -15,9 +19,24 @@
     const loadedTemplate = await getTemplate(templateName);
     if (!loadedTemplate)
       throw new Error(`Template "${templateName}" not found`);
+
+    // LocalStorageから保存された値を復元
+    const savedFields = loadTemplateFields(templateName);
+    if (savedFields) {
+      // デフォルト値とマージ（新しいフィールドが追加された場合に対応）
+      loadedTemplate.fields = { ...loadedTemplate.fields, ...savedFields };
+    }
+
     template = loadedTemplate;
     return loadedTemplate;
   };
+
+  // template.fieldsが変更されたら自動保存
+  $effect(() => {
+    if (template) {
+      saveTemplateFields(templateName, template.fields);
+    }
+  });
 </script>
 
 {#await loadTemplate()}
